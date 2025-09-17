@@ -11,6 +11,12 @@ export const WineProvider = ({ children }) => {
         return saved ? JSON.parse(saved) : []
     })
 
+    const[favorites, setFavorites] = useState(() => {
+        const saved = localStorage.getItem("favorites")
+        return saved ? JSON.parse(saved) : []
+    })
+    
+
     const apiUrl = "http://localhost:3001/wines"
 
     // Recupero i dati dal mio API
@@ -51,9 +57,18 @@ export const WineProvider = ({ children }) => {
     }
 
     // FAVORITI
-    const addFavorites = () => {
-        console.log("Agginto alla lista dei preferiti")
+    const addFavorites = (elem) => {
+        if(favorites.includes(elem.id)){
+            console.log("elemento già presente nella lista")
+        }else{
+            console.log("Aggiunto alla lista", elem.title)
+            setFavorites([...favorites, elem])
+        }
     }
+    // Salvo i prodotti da controntare nel local storage
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favorites))
+    },[favorites])
 
     return(
         <WineContext.Provider
@@ -62,6 +77,7 @@ export const WineProvider = ({ children }) => {
             wines : wines,
             addCompare,
             addFavorites,
+            favorites,
             clear
         }}
         >

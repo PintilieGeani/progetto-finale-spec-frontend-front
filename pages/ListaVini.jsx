@@ -14,7 +14,7 @@ function debounce(func, delay) {
 export default function ListaVini() {
 
     // Dati
-    const { wines, addCompare, addFavorites, wineToCompareId } = useWine()
+    const { wines, addCompare, addFavorites, wineToCompareId, favorites } = useWine()
     const [filteredWines, setFilteredWines] = useState([]);
     const [query, setQuery] = useState("")
     const [sortBy, setSortBy] = useState("Categoria")
@@ -44,9 +44,6 @@ export default function ListaVini() {
             setFilteredWines(wines);
         }
     }, [wines]);
-
-    console.log(wineToCompareId)
-
 
 
     //Ordina, crescente o decrescente se la colonna è  selezionata
@@ -82,6 +79,10 @@ export default function ListaVini() {
         return sorted
 
     }, [filteredWines, sortBy, sortOrder])
+
+
+    console.log(favorites)
+
 
     return (
         <>

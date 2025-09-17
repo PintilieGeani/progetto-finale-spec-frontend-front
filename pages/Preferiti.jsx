@@ -27,7 +27,7 @@ export default function Preferiti() {
             <h1>Sono la pagina dei preferiti</h1>
         </div> 
         <div className="favorites-card-container">
-                {favoritesList && favoritesList.map((wine, id) => (
+                {favoritesList.length > 0 ? favoritesList.map((wine, id) => (
                     <div key={id} className="compare-card">
                         <div className="compare-card-text">
                             <h3>{wine.title}</h3>
@@ -56,7 +56,7 @@ export default function Preferiti() {
                             <p>Da abbinare con: {wine.pairings.join(", ")}</p>
                         </div>
                     </div>
-                ))}
+                )) : <div>Nessun articolo tra i preferiti</div>} 
             </div>
 
             {/* <button onClick={clear}>Pulisci Storage</button> */}

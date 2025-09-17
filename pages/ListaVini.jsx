@@ -23,14 +23,6 @@ export default function ListaVini() {
 
     // DEBOUNCE
 
-
-    const handleSearch = (query) => {
-        const result = wines.filter((w) =>
-            w.title.toLowerCase().includes(query.toLowerCase())
-        )
-        setFilteredWines(result)
-    }
-
     const debouncedSearch = useCallback(debounce((query) => {
         const result = wines.filter((w) =>
             w.title.toLowerCase().includes(query.toLowerCase())
@@ -96,7 +88,8 @@ export default function ListaVini() {
                 }
                 }
             />
-            {wines && <table className="wine-table">
+            {sortedWines.length > 0
+            ? <table className="wine-table">
                 <thead>
                     <tr>
                         <th onClick={() => handleSort("Nome")}>Nome</th>
@@ -119,7 +112,7 @@ export default function ListaVini() {
                     ))}
                 </tbody>
             </table>
-            }
+                : <div>Nessun vino trovato</div>}
 
         </>
     )

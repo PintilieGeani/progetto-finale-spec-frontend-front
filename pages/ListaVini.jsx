@@ -14,7 +14,7 @@ function debounce(func, delay) {
 export default function ListaVini() {
 
     // Dati
-    const { wines, addCompare, addFavorites, wineToCompareId, favorites } = useWine()
+    const { wines, addCompare, addFavorites, isAdmin, addWine, removeWine, updateWine } = useWine()
     const [filteredWines, setFilteredWines] = useState([]);
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")
@@ -128,6 +128,9 @@ export default function ListaVini() {
                             <th onClick={() => handleSort("Nome")}>Nome</th>
                             <th onClick={() => handleSort("Categoria")}>Categoria</th>
                             <th>Azioni</th>
+                            {isAdmin && 
+                            <th>Operazioni</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -141,6 +144,12 @@ export default function ListaVini() {
                                     <button onClick={() => addCompare(wine)}>Confronta</button>
                                     <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
                                 </td>
+                                   {isAdmin &&
+                                    <td>
+                                        <button onClick={() => updateWine(wine.id)}>Modifica</button>
+                                        <button onClick={() => removeWine(wine.id)}>Elimina</button>
+                                    </td>
+                                    }
                             </tr>
                         ))}
                     </tbody>

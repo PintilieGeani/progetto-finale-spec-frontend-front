@@ -1,8 +1,22 @@
+/* Debug */
 nav{
     margin: 10px;
     display: flex;
     gap: 50px;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+form input,
+form select,
+form textarea,
+form button {
+    width: 50%;
+}
+/* Fine Debug */
 
 /* RESET CSS */
 * {

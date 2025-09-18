@@ -5,6 +5,10 @@ const WineContext = createContext()
 export const WineProvider = ({ children }) => {
 
     const [wines, setWines] = useState([])
+    const [isAdmin , setIsAdmin] = useState(() => {
+        const saved = localStorage.getItem("isAdmin")
+        return saved ? true : false
+    })
 
     const [wineToCompareId, setWineToCompareId] = useState(() => {
         const saved = localStorage.getItem("wineToCompare")
@@ -70,6 +74,48 @@ export const WineProvider = ({ children }) => {
         localStorage.setItem("favorites", JSON.stringify(favorites))
     },[favorites])
 
+
+
+    // Log-in e stato admin
+    const login = (username, password) => {
+        const admin = {
+            username: "admin",
+            password: "admin123" 
+        }
+
+        if(username === admin.username && password === admin.password){
+            setIsAdmin(true)
+            localStorage.setItem("isAdmin" , "true")
+            return true
+        }else {
+            alert("Username o password sbagliata")
+            setIsAdmin(false)
+            localStorage.setItem("isAdmin", "false")
+            return false
+        }
+
+    }
+
+    const logout = () => {
+        setIsAdmin(false)
+        localStorage.setItem("isAdmin", "false")
+    }
+
+    // Operazioni Admin Wine 
+
+    const addWine = () => {
+        console.log("Aggiunto nuovo vino")
+    } 
+
+    const removeWine = (id) => {
+        console.log(`Vino con id: ${id} è stato rimosso`)
+    }
+
+    const updateWine = (id) => {
+        console.log(`Vino con id: ${id} è stato modificato`)
+    }
+
+
     return(
         <WineContext.Provider
         value = {{
@@ -78,7 +124,13 @@ export const WineProvider = ({ children }) => {
             addCompare,
             addFavorites,
             favorites,
-            clear
+            clear,
+            isAdmin,
+            login,
+            logout,
+            addWine,
+            removeWine,
+            updateWine
         }}
         >
             {children}

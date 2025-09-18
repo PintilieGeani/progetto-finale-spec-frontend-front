@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom"
+import { useWine } from "../context/WineContext"
+import Login from "../pages/Login"
 
 export default function AppHeader(){
+
+    const {isAdmin, logout} = useWine()
+
     return(
         <>
         <header>
@@ -9,6 +14,9 @@ export default function AppHeader(){
             <NavLink to="/">Home</NavLink>
             <NavLink to="/compare">Comparatore</NavLink>
             <NavLink to="/preferiti">Preferiti</NavLink>
+            <NavLink to="/login">Login</NavLink>
+            {isAdmin && <NavLink to = {"add-wine"}>Aggiungi Vino</NavLink>}
+            {isAdmin && <button onClick={logout}>Logout</button>}
         </nav>
         </header>
         </>

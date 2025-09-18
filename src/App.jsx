@@ -6,6 +6,7 @@ import DettagliVino from "../pages/DettagliVino.jsx"
 import Preferiti from "../pages/Preferiti.jsx";
 import Login from "../pages/Login.jsx";
 import AddWine from "../pages/AddWine.jsx";
+import ListaCantine from "../pages/ListaCantine.jsx";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/preferiti" element={<Preferiti />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add-wine" element={<AddWine />} />
+          <Route path="/cantine" element={<ListaCantine />} />
         </Route>
         {/* Fine Layout */}
       </Routes>

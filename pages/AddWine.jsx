@@ -3,6 +3,8 @@ import { useState, useRef } from "react"
 
 export default function AddWine() {
 
+    const{addWine} = useWine()
+
     // Ref del form
     const titolo = useRef()
     const categoria = useRef()
@@ -52,7 +54,7 @@ export default function AddWine() {
             bottleSizeMl: parseInt(bottiglia.current.value)
         }
 
-        console.log("Aggiunto vino:",newWine)
+        addWine(newWine)
     }
 
 

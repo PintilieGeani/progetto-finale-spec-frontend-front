@@ -1,18 +1,20 @@
 import { useEffect, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
+import { useWine } from "../context/WineContext";
+import EditWineModal from "../components/EditWineModal";
 
 export default function DettagliVino() {
 
     const [wine, setWine] = useState(null)
+    const {isAdmin, updateWine} = useWine()
+    const [showmodale, setShowModal] = useState(false)
 
     const idParams = useParams()
     const id = parseInt(idParams.id)
 
     const fetchwine = async () => {
         const response = await fetch(`http://localhost:3001/wines/${id}`)
-        console.log(response)
         const data = await response.json()
-        console.log(data)
         setWine(data.wine)
     }
 
@@ -20,7 +22,6 @@ export default function DettagliVino() {
         fetchwine()
     }, [id])
 
-    console.log(wine)
 
     return (
         <>
@@ -41,6 +42,19 @@ export default function DettagliVino() {
                     <p><strong>Acidità:</strong> {wine.acidity}</p>
                     <p><strong>Dolcezza:</strong> {wine.sweetness}</p>
                 </div>
+                {isAdmin && 
+                <button onClick={() => setShowModal(true)}>Modifica Vino</button>
+                }
+            </div>}
+
+             {showmodale && <div>
+                <EditWineModal
+                    wine={wine}
+                    onClose={() => {
+                        setShowModal(false)
+                    }}
+                    
+                />
             </div>}
 
         </>

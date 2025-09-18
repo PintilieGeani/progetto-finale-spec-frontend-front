@@ -1,7 +1,8 @@
 // IMPORTS
-import { useCallback, useState, useEffect, useMemo } from "react"
+import { useCallback, useState, useEffect, useMemo,  } from "react"
 import { useWine } from "../context/WineContext"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
 
 function debounce(func, delay) {
     let timer;
@@ -22,13 +23,16 @@ export default function ListaVini() {
     const [sortOrder, setSortOrder] = useState(1)
     const [filtro, setFiltro] = useState("")
 
+    const navigate = useNavigate()
+ 
+
 
     // DEBOUNCE
 
-  const debounceQuery = useCallback(
-  debounce((val) => setDebouncedQuery(val), 500),
-  []
-)
+    const debounceQuery = useCallback(
+        debounce((val) => setDebouncedQuery(val), 500),
+        []
+    )
 
 
     useEffect(() => {
@@ -50,21 +54,21 @@ export default function ListaVini() {
 
 
     // Filtro per categoria e query
-  useEffect(() => {
-  let result = [...wines]
+    useEffect(() => {
+        let result = [...wines]
 
-  if (debouncedQuery.trim() !== "") {
-    result = result.filter((w) =>
-      w.title.toLowerCase().includes(debouncedQuery.toLowerCase())
-    )
-  }
+        if (debouncedQuery.trim() !== "") {
+            result = result.filter((w) =>
+                w.title.toLowerCase().includes(debouncedQuery.toLowerCase())
+            )
+        }
 
-  if (filtro !== "") {
-    result = result.filter((w) => w.category === filtro)
-  }
+        if (filtro !== "") {
+            result = result.filter((w) => w.category === filtro)
+        }
 
-  setFilteredWines(result)
-}, [debouncedQuery, filtro, wines])
+        setFilteredWines(result)
+    }, [debouncedQuery, filtro, wines])
 
 
     // Sorting
@@ -128,8 +132,8 @@ export default function ListaVini() {
                             <th onClick={() => handleSort("Nome")}>Nome</th>
                             <th onClick={() => handleSort("Categoria")}>Categoria</th>
                             <th>Azioni</th>
-                            {isAdmin && 
-                            <th>Operazioni</th>
+                            {isAdmin &&
+                                <th>Operazioni</th>
                             }
                         </tr>
                     </thead>
@@ -144,12 +148,14 @@ export default function ListaVini() {
                                     <button onClick={() => addCompare(wine)}>Confronta</button>
                                     <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
                                 </td>
-                                   {isAdmin &&
+                                {isAdmin &&
                                     <td>
-                                        <button onClick={() => updateWine(wine.id)}>Modifica</button>
+                                        <button onClick={() => {
+                                            navigate(`/wine/${wine.id}`)
+                                        }}>Modifica</button>
                                         <button onClick={() => removeWine(wine.id)}>Elimina</button>
                                     </td>
-                                    }
+                                }
                             </tr>
                         ))}
                     </tbody>

@@ -17,18 +17,18 @@ export default function ListaVini() {
     const { wines, addCompare, addFavorites, wineToCompareId, favorites } = useWine()
     const [filteredWines, setFilteredWines] = useState([]);
     const [query, setQuery] = useState("")
+    const [debouncedQuery, setDebouncedQuery] = useState("")
     const [sortBy, setSortBy] = useState("Categoria")
     const [sortOrder, setSortOrder] = useState(1)
+    const [filtro, setFiltro] = useState("")
 
 
     // DEBOUNCE
 
-    const debouncedSearch = useCallback(debounce((query) => {
-        const result = wines.filter((w) =>
-            w.title.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredWines(result);
-    }, 500), [wines]);
+  const debounceQuery = useCallback(
+  debounce((val) => setDebouncedQuery(val), 500),
+  []
+)
 
 
     useEffect(() => {
@@ -48,6 +48,26 @@ export default function ListaVini() {
         }
     }
 
+
+    // Filtro per categoria e query
+  useEffect(() => {
+  let result = [...wines]
+
+  if (debouncedQuery.trim() !== "") {
+    result = result.filter((w) =>
+      w.title.toLowerCase().includes(debouncedQuery.toLowerCase())
+    )
+  }
+
+  if (filtro !== "") {
+    result = result.filter((w) => w.category === filtro)
+  }
+
+  setFilteredWines(result)
+}, [debouncedQuery, filtro, wines])
+
+
+    // Sorting
     const sortedWines = useMemo(() => {
         const statusOrder = {
             "Rosso": 0,
@@ -56,6 +76,7 @@ export default function ListaVini() {
             "Spumante": 3,
             "Dessert": 4
         }
+
 
         const sorted = [...filteredWines].sort((a, b) => {
             let compare = 0;
@@ -73,7 +94,7 @@ export default function ListaVini() {
     }, [filteredWines, sortBy, sortOrder])
 
 
-    console.log(favorites)
+    console.log(filteredWines)
 
 
     return (
@@ -84,34 +105,46 @@ export default function ListaVini() {
                 placeholder="Cerca il tuo vino..."
                 onChange={(e) => {
                     setQuery(e.target.value)
-                    debouncedSearch(e.target.value)
+                    debounceQuery(e.target.value)
                 }
                 }
             />
+            <div className="filtro">
+                <label htmlFor="filter-category">Filtra per:</label>
+                <select
+                    onChange={(e) => setFiltro(e.target.value)}>
+                    <option value="">Seleziona</option>
+                    <option value="Rosso">Rosso</option>
+                    <option value="Bianco">Bianco</option>
+                    <option value="Rosé">Rosé</option>
+                    <option value="Spumante">Spumante</option>
+                    <option value="Dessert">Dessert</option>
+                </select>
+            </div>
             {sortedWines.length > 0
-            ? <table className="wine-table">
-                <thead>
-                    <tr>
-                        <th onClick={() => handleSort("Nome")}>Nome</th>
-                        <th onClick={() => handleSort("Categoria")}>Categoria</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedWines.map((wine) => (
-                        <tr key={wine.id}>
-                            <td>
-                                <Link to={`/wine/${wine.id}`}>{wine.title}</Link>
-                            </td>
-                            <td>{wine.category}</td>
-                            <td>
-                                <button onClick={() => addCompare(wine)}>Confronta</button>
-                                <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
-                            </td>
+                ? <table className="wine-table">
+                    <thead>
+                        <tr>
+                            <th onClick={() => handleSort("Nome")}>Nome</th>
+                            <th onClick={() => handleSort("Categoria")}>Categoria</th>
+                            <th>Azioni</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortedWines.map((wine) => (
+                            <tr key={wine.id}>
+                                <td>
+                                    <Link to={`/wine/${wine.id}`}>{wine.title}</Link>
+                                </td>
+                                <td>{wine.category}</td>
+                                <td>
+                                    <button onClick={() => addCompare(wine)}>Confronta</button>
+                                    <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 : <div>Nessun vino trovato</div>}
 
         </>

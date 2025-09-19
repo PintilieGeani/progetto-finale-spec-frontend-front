@@ -1,6 +1,7 @@
 import { useWinery } from "../context/WineryContext"
 import { Link } from "react-router-dom"
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { useWine } from "../context/WineContext";
 
 function debounce(func, delay) {
     let timer;
@@ -12,6 +13,7 @@ function debounce(func, delay) {
 
 export default function ListaCantine() {
     const { winerys, addCompare, addFavorites } = useWinery()
+    const {isAdmin} = useWine()
     const [filteredWinerys, setFilteredWinerys] = useState([]);
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")
@@ -130,21 +132,21 @@ export default function ListaCantine() {
                     {sortedWinerys.map((winery) => (
                         <tr key={winery.id}>
                             <td>
-                                <Link to={`/wine/${winery.id}`}>{winery.title}</Link>
+                                <Link to={`/cantine/${winery.id}`}>{winery.title}</Link>
                             </td>
                             <td>{winery.category}</td>
                             <td>
                                 <button onClick={() => addCompare(winery)}>Confronta</button>
                                 <button onClick={() => addFavorites(winery)}>Aggiungi ai preferiti</button>
                             </td>
-                            {/* {isAdmin &&
+                            {isAdmin &&
                                 <td>
                                     <button onClick={() => {
                                         navigate(`/winery/${wine.id}`)
                                     }}>Modifica</button>
                                     <button >Elimina</button>
                                 </td>
-                            } */}
+                            }
                         </tr>
                     ))}
                 </tbody>

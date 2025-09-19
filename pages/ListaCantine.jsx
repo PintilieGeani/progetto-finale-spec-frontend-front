@@ -1,7 +1,6 @@
 import { useWinery } from "../context/WineryContext"
 import { Link } from "react-router-dom"
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { useWine } from "../context/WineContext";
 
 function debounce(func, delay) {
     let timer;
@@ -12,8 +11,7 @@ function debounce(func, delay) {
 }
 
 export default function ListaCantine() {
-    const { addFavorites } = useWine()
-    const { winerys, addCompare } = useWinery()
+    const { winerys, addCompare, addFavorites } = useWinery()
     const [filteredWinerys, setFilteredWinerys] = useState([]);
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")

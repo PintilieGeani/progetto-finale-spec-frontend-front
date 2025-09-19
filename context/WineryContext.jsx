@@ -8,6 +8,10 @@ export  function WineryProvider ({children}) {
 
     const [winerys, setWinerys] = useState([])
     const [wineryToCompareId, setWineryToCompareId] = useState([])
+    const[wineryFavorites, setWineryFavorites] = useState(() => {
+        const saved = localStorage.getItem("wineryFavorites")
+        return saved ? JSON.parse(saved) : []
+    })
 
     useEffect(() => {
         const fetchWinerys = async () =>{
@@ -38,13 +42,29 @@ export  function WineryProvider ({children}) {
         }
     }
 
+    // FAVORITI
+    const addFavorites = (elem) => {
+        if (wineryFavorites.includes(elem.id)) {
+            console.log("elemento già presente nella lista")
+        } else {
+            console.log("Aggiunto alla lista", elem.title)
+            setWineryFavorites([...wineryFavorites, elem])
+        }
+    }
+
+      useEffect(() => {
+        localStorage.setItem("wineryFavorites", JSON.stringify(wineryFavorites))
+    }, [wineryFavorites])
+
 
     return (
         <WineryContext.Provider
         value={{
             winerys: winerys,
             wineryToCompareId: wineryToCompareId,
-            addCompare
+            wineryFavorites: wineryFavorites,
+            addCompare,
+            addFavorites
         }}
         >
             {children}

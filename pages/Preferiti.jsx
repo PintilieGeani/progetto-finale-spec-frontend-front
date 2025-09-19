@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
 import { useWine } from "../context/WineContext"
+import { useWinery } from "../context/WineryContext"
 
 export default function Preferiti() {
         
     const{ favorites, clear } = useWine()
+    const {wineryFavorites} = useWinery()
     const [favoritesList, setFavoritesList] = useState([])
+    const [wineryFavoritesList, setWineryFavoritesList] = useState([])
 
      useEffect(() => {
     
@@ -18,16 +21,32 @@ export default function Preferiti() {
                 .then((wineData) => setFavoritesList(wineData.map((data) => data.wine)))
                 .catch((error) => console.error("Errore nel recuper dei dati dei vini", error))
         }, [favorites])
+
+        useEffect(() => {
+    
+            const promises = favorites.map((elem) =>
+                fetch(`http://localhost:3001/wineries/${elem.id}`)
+            )
+    
+    
+            Promise.all(promises)
+                .then((response) => Promise.all(response.map((r) => r.json())))
+                .then((wineryData) => setWineryFavoritesList(wineryData.map((data) => data.winery)))
+                .catch((error) => console.error("Errore nel recupero delle cantine", error))
+        }, [wineryFavorites])
     
         console.log(favoritesList)
+        console.log(wineryFavoritesList)
 
     return(
         <>
         <div>
             <h1>Sono la pagina dei preferiti</h1>
         </div> 
+        <h2>Vini</h2>
         <div className="favorites-card-container">
-                {favoritesList.length > 0 ? favoritesList.map((wine, id) => (
+                {favoritesList.length > 0 ? 
+                favoritesList.map((wine, id) => (
                     <div key={id} className="compare-card">
                         <div className="compare-card-text">
                             <h3>{wine.title}</h3>
@@ -56,7 +75,47 @@ export default function Preferiti() {
                             <p>Da abbinare con: {wine.pairings.join(", ")}</p>
                         </div>
                     </div>
-                )) : <div>Nessun articolo tra i preferiti</div>} 
+                ))
+                : <div>Nessun vino salvato tra i preferiti</div>}
+            </div>
+            <h2>Cantine</h2>
+            <div className="favorites-card-container">
+                {wineryFavoritesList.length > 0 ? 
+                     wineryFavoritesList.map((winery, id) => (
+                    <div key={id} className="compare-card">
+                        <div className="compare-card-text">
+                            <h3>{winery.title}</h3>
+                            <h5>Categoria: {winery.category}</h5>
+                        </div>
+                        <div className="compare-card-img">
+                            <img src= {`https://placehold.co/300x300?text=${winery.title}`} alt={winery.title} />
+                        </div>
+                        <div className="compare-card-info">
+                            <p>Paese: {winery.country}</p>
+                            <p>Regione: {winery.region}</p>
+                            <p>Anno di fondazione: {winery.yearFounded}</p>
+                            <p>Ettari: {winery.hectares}</p>
+                            <p>Produzione annua: {winery.annualProduction}</p>
+                            <p>Vitigni: {winery.grapes.join(", ")}</p>
+                        </div>
+                        <div className="compare-card-carateristiche">
+                            <h4>Premi e riconoscimenti</h4>
+                            <p>{winery.awards.join(", ")}</p>
+                        </div>
+                        <div className="note-abbinamenti">
+                            <h4>Note ed abbinamenti</h4>
+                            <p>{winery.notes}</p>
+                            <p>Da abbinare con: {winery.pairings.join(", ")}</p>
+                        </div>
+                        <div className="compare-card-link">
+                            <a href={winery.website} target="_blank" rel="noreferrer">
+                                Visita il sito
+                            </a>
+                        </div>
+                    </div>
+                ))
+                : <div>Nessuna cantina salvata tra i preferiti</div>
+            }
             </div>
 
             {/* <button onClick={clear}>Pulisci Storage</button> */}

@@ -7,7 +7,7 @@ export const WineProvider = ({ children }) => {
     const [wines, setWines] = useState([])
     const [isAdmin, setIsAdmin] = useState(() => {
         const saved = localStorage.getItem("isAdmin")
-        return saved === true ? true : false
+        return saved === "true" ? true : false
     })
 
     const [wineToCompareId, setWineToCompareId] = useState([])

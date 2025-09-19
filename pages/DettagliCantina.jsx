@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { useWine } from "../context/WineContext"
 
 export default function DettagliCantina() {
     const [winery, setwinery] = useState(null)
-
+    const { isAdmin } = useWine()
     const idParams = useParams()
     const id = parseInt(idParams.id)
+
+    // Da fare try and catch
+
 
     const fetchwinery = async () => {
         const response = await fetch(`http://localhost:3001/wineries/${id}`)
         const data = await response.json()
         setwinery(data.winery)
     }
+
 
     useEffect(() => {
         fetchwinery()
@@ -53,6 +58,9 @@ export default function DettagliCantina() {
                             {winery.website}
                         </a>
                     </div>
+                    {isAdmin &&
+                        <button onClick={() => setShowModal(true)}>Modifica Cantina</button>
+                    }
                 </div>
             )}
         </>

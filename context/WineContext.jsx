@@ -10,10 +10,7 @@ export const WineProvider = ({ children }) => {
         return saved === true ? true : false
     })
 
-    const [wineToCompareId, setWineToCompareId] = useState(() => {
-        const saved = localStorage.getItem("wineToCompare")
-        return saved ? JSON.parse(saved) : []
-    })
+    const [wineToCompareId, setWineToCompareId] = useState([])
 
     const [favorites, setFavorites] = useState(() => {
         const saved = localStorage.getItem("favorites")
@@ -51,10 +48,7 @@ export const WineProvider = ({ children }) => {
             setWineToCompareId([...wineToCompareId, elem.id])
         }
     }
-    // Salvo i prodotti da controntare nel local storage
-    useEffect(() => {
-        localStorage.setItem("wineToCompare", JSON.stringify(wineToCompareId))
-    }, [wineToCompareId])
+
 
     const clear = () => {
         setWineToCompareId([])

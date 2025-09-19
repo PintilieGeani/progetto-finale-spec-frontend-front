@@ -7,6 +7,7 @@ export  function WineryProvider ({children}) {
     const apiUrl = "http://localhost:3001/wineries"
 
     const [winerys, setWinerys] = useState([])
+    const [wineryToCompareId, setWineryToCompareId] = useState([])
 
     useEffect(() => {
         const fetchWinerys = async () =>{
@@ -26,10 +27,24 @@ export  function WineryProvider ({children}) {
         fetchWinerys()
     }, [])
 
+
+        // COMPARATORE
+    const addCompare = (elem) => {
+        if (wineryToCompareId.includes(elem.id)) {
+            console.log("elemento già presente nella lista")
+        } else {
+            console.log("Aggiunto alla lista", elem.title)
+            setWineryToCompareId([...wineryToCompareId, elem.id])
+        }
+    }
+
+
     return (
         <WineryContext.Provider
         value={{
             winerys: winerys,
+            wineryToCompareId: wineryToCompareId,
+            addCompare
         }}
         >
             {children}

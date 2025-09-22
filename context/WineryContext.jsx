@@ -57,6 +57,80 @@ export  function WineryProvider ({children}) {
     }, [wineryFavorites])
 
 
+    // CRUD
+
+     // Aggiunta
+    const addWinery = (obj) => {
+        console.log("Aggiunto nuova Cantina")
+        try {
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Errore nella Post")
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    alert("Dati mandati con successo")
+                    console.log("Cantina aggiounta con successo")
+                    setWinerys((prev) => [...prev, data.winery])
+                })
+        }
+        catch (error) {
+            console.error("Errore nel salvataggio del vino", error)
+        }
+
+    }
+
+     // Eliminazione
+    const removeWinery = (id) => {
+        console.log(`Cantina con id: ${id} è stato rimossa`)
+        try {
+            fetch(`${apiUrl}/${id}`, { method: "DELETE" })
+                .then(() => {
+                    alert(`Cantina con id ${id} è stato rimossa dalla lista`)
+                    setWinerys((prev) => prev.filter((w) => w.id !== id))
+                }
+                )
+
+        }
+        catch (error) {
+            console.error("Errore durante l'eliminazione della cantina")
+        }
+    }
+    
+    // Aggiornamento
+    const updateWinery = (id, updatedWinery) => {
+        console.log("sto per mandare alla fatch", updatedWinery)
+        try {
+            fetch(`${apiUrl}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedWinery)
+            })
+            .then(res => {
+                    if (!res.ok) throw new Error("Errore nell'update")
+                    return res.json()
+                })
+             .then(data => {
+                console.log(data)
+                    alert("Cantina modificata con successo")
+                    setWinerys(prev => prev.map(w => w.id === id ? data.winery : w))
+                })
+        }
+        catch (error) {
+            console.error("Errore durante la modifica della cantina", error)
+        }
+    }
+    
+
+
     return (
         <WineryContext.Provider
         value={{
@@ -64,7 +138,10 @@ export  function WineryProvider ({children}) {
             wineryToCompareId: wineryToCompareId,
             wineryFavorites: wineryFavorites,
             addCompare,
-            addFavorites
+            addFavorites,
+            addWinery,
+            updateWinery,
+            removeWinery
         }}
         >
             {children}

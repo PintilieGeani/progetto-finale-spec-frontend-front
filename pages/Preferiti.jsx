@@ -9,6 +9,8 @@ export default function Preferiti() {
     const [favoritesList, setFavoritesList] = useState([])
     const [wineryFavoritesList, setWineryFavoritesList] = useState([])
 
+
+    // VINII
      useEffect(() => {
     
             const promises = favorites.map((elem) =>
@@ -22,9 +24,12 @@ export default function Preferiti() {
                 .catch((error) => console.error("Errore nel recuper dei dati dei vini", error))
         }, [favorites])
 
+
+
+        // CANTINE
         useEffect(() => {
     
-            const promises = favorites.map((elem) =>
+            const promises = wineryFavorites.map((elem) =>
                 fetch(`http://localhost:3001/wineries/${elem.id}`)
             )
     
@@ -46,8 +51,8 @@ export default function Preferiti() {
         <h2>Vini</h2>
         <div className="favorites-card-container">
                 {favoritesList.length > 0 ? 
-                favoritesList.map((wine, id) => (
-                    <div key={id} className="compare-card">
+                favoritesList.map((wine) => (
+                    <div key={wine.id} className="compare-card">
                         <div className="compare-card-text">
                             <h3>{wine.title}</h3>
                             <h5>Categoria: {wine.category}</h5>
@@ -81,8 +86,8 @@ export default function Preferiti() {
             <h2>Cantine</h2>
             <div className="favorites-card-container">
                 {wineryFavoritesList.length > 0 ? 
-                     wineryFavoritesList.map((winery, id) => (
-                    <div key={id} className="compare-card">
+                     wineryFavoritesList.map((winery) => (
+                    <div key={winery.id} className="compare-card">
                         <div className="compare-card-text">
                             <h3>{winery.title}</h3>
                             <h5>Categoria: {winery.category}</h5>

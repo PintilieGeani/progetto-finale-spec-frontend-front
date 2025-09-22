@@ -8,6 +8,7 @@ import Login from "../pages/Login.jsx";
 import AddWine from "../pages/AddWine.jsx";
 import ListaCantine from "../pages/ListaCantine.jsx";
 import DettagliCantina from "../pages/DettagliCantina.jsx";
+import AddWinery from "../pages/addWinery.jsx";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/add-wine" element={<AddWine />} />
           <Route path="/cantine" element={<ListaCantine />} />
           <Route path="/cantine/:id" element={<DettagliCantina />} />
+          <Route path="/add-winery" element={<AddWinery />} />
         </Route>
         {/* Fine Layout */}
       </Routes>

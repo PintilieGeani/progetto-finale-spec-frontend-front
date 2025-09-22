@@ -1,5 +1,5 @@
 import { useWinery } from "../context/WineryContext"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useWine } from "../context/WineContext";
 
@@ -12,7 +12,7 @@ function debounce(func, delay) {
 }
 
 export default function ListaCantine() {
-    const { winerys, addCompare, addFavorites } = useWinery()
+    const { winerys, addCompare, addFavorites, removeWinery } = useWinery()
     const {isAdmin} = useWine()
     const [filteredWinerys, setFilteredWinerys] = useState([]);
     const [query, setQuery] = useState("")
@@ -20,6 +20,7 @@ export default function ListaCantine() {
     const [sortBy, setSortBy] = useState("Categoria")
     const [sortOrder, setSortOrder] = useState(1)
     const [filtro, setFiltro] = useState("")
+    const navigate = useNavigate()
 
 
     console.log(winerys)
@@ -125,7 +126,9 @@ export default function ListaCantine() {
                         <th onClick={() => handleSort("Nome")}>Nome</th>
                         <th onClick={() => handleSort("Categoria")}>Categoria</th>
                         <th>Azioni</th>
-                        {/* <th>Operazioni</th> */}
+                        {isAdmin &&
+                                <th>Operazioni</th>
+                            }
                     </tr>
                 </thead>
                 <tbody>
@@ -142,9 +145,9 @@ export default function ListaCantine() {
                             {isAdmin &&
                                 <td>
                                     <button onClick={() => {
-                                        navigate(`/winery/${wine.id}`)
+                                        navigate(`/cantine/${winery.id}`)
                                     }}>Modifica</button>
-                                    <button >Elimina</button>
+                                    <button onClick={() => removeWinery(winery.id)}>Elimina</button>
                                 </td>
                             }
                         </tr>

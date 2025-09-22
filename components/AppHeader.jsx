@@ -17,6 +17,7 @@ export default function AppHeader(){
             <NavLink to="/cantine">Lista cantine</NavLink>
             <NavLink to="/login">Login</NavLink>
             {isAdmin && <NavLink to = {"add-wine"}>Aggiungi Vino</NavLink>}
+            {isAdmin && <NavLink to = {"add-winery"}>Aggiungi Cantina</NavLink>}
             {isAdmin && <button onClick={logout}>Logout</button>}
         </nav>
         </header>

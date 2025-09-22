@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useWine } from "../context/WineContext"
+import EditWineryModal from "../components/EditWineryModal"
 
 export default function DettagliCantina() {
     const [winery, setwinery] = useState(null)
     const { isAdmin } = useWine()
     const idParams = useParams()
     const id = parseInt(idParams.id)
+    const [showmodal, setShowModal] = useState(false)
 
     // Da fare try and catch
 
@@ -63,6 +65,16 @@ export default function DettagliCantina() {
                     }
                 </div>
             )}
+            {showmodal && <div>
+                <EditWineryModal
+                    winery={winery}
+                    onClose={() => {
+                        setShowModal(false)
+                    }}
+
+                />
+            </div>}
+
         </>
     )
 }

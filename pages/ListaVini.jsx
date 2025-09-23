@@ -2,6 +2,7 @@
 import { useCallback, useState, useEffect, useMemo,  } from "react"
 import { useWine } from "../context/WineContext"
 import { Link, useNavigate } from "react-router-dom"
+import ModaleConferma from "../components/ModaleConferma";
 
 
 function debounce(func, delay) {
@@ -22,6 +23,7 @@ export default function ListaVini() {
     const [sortBy, setSortBy] = useState("Categoria")
     const [sortOrder, setSortOrder] = useState(1)
     const [filtro, setFiltro] = useState("")
+    
 
     const navigate = useNavigate()
  
@@ -153,7 +155,6 @@ export default function ListaVini() {
                                         <button onClick={() => {
                                             navigate(`/wine/${wine.id}`)
                                         }}>Modifica</button>
-                                        <button onClick={() => removeWine(wine.id)}>Elimina</button>
                                     </td>
                                 }
                             </tr>

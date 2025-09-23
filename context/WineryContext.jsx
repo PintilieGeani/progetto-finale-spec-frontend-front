@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, } from "react"
+import { useNavigate } from "react-router-dom"
 
 const WineryContext = createContext()
 
@@ -12,6 +13,7 @@ export  function WineryProvider ({children}) {
         const saved = localStorage.getItem("wineryFavorites")
         return saved ? JSON.parse(saved) : []
     })
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchWinerys = async () =>{
@@ -80,6 +82,7 @@ export  function WineryProvider ({children}) {
                     alert("Dati mandati con successo")
                     console.log("Cantina aggiounta con successo")
                     setWinerys((prev) => [...prev, data.winery])
+                    navigate("/cantine")
                 })
         }
         catch (error) {
@@ -94,8 +97,9 @@ export  function WineryProvider ({children}) {
         try {
             fetch(`${apiUrl}/${id}`, { method: "DELETE" })
                 .then(() => {
-                    alert(`Cantina con id ${id} è stato rimossa dalla lista`)
+                    alert(`Cantina rimossa con successo`)
                     setWinerys((prev) => prev.filter((w) => w.id !== id))
+                    navigate("/cantine")
                 }
                 )
 
@@ -122,6 +126,7 @@ export  function WineryProvider ({children}) {
                 console.log(data)
                     alert("Cantina modificata con successo")
                     setWinerys(prev => prev.map(w => w.id === id ? data.winery : w))
+                    navigate(`/cantine`)
                 })
         }
         catch (error) {

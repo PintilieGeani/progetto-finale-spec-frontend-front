@@ -2,12 +2,14 @@ import { useEffect, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useWine } from "../context/WineContext";
 import EditWineModal from "../components/EditWineModal";
+import ModaleConferma from "../components/ModaleConferma";
 
 export default function DettagliVino() {
 
     const [wine, setWine] = useState(null)
-    const {isAdmin, updateWine} = useWine()
+    const {isAdmin, updateWine, removeWine} = useWine()
     const [showmodale, setShowModal] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
 
     const idParams = useParams()
     const id = parseInt(idParams.id)
@@ -43,7 +45,10 @@ export default function DettagliVino() {
                     <p><strong>Dolcezza:</strong> {wine.sweetness}</p>
                 </div>
                 {isAdmin && 
-                <button onClick={() => setShowModal(true)}>Modifica Vino</button>
+                <div>
+                    <button onClick={() => setShowModal(true)}>Modifica Vino</button>
+                    <button onClick={() => setShowConfirm(true)}>Elimina</button>
+                </div>
                 }
             </div>}
 
@@ -53,9 +58,16 @@ export default function DettagliVino() {
                     onClose={() => {
                         setShowModal(false)
                     }}
-                    
                 />
             </div>}
+            {showConfirm &&
+            <ModaleConferma
+            text={`Sicuro di volere eliminare ${wine.title}`}
+            onClose={() => setShowConfirm(false)}
+            onConfirm={() => removeWine(wine.id)}
+            />
+            }
+            
 
         </>
     )

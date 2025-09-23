@@ -147,7 +147,6 @@ export default function ListaCantine() {
                                     <button onClick={() => {
                                         navigate(`/cantine/${winery.id}`)
                                     }}>Modifica</button>
-                                    <button onClick={() => removeWinery(winery.id)}>Elimina</button>
                                 </td>
                             }
                         </tr>

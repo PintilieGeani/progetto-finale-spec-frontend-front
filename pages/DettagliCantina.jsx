@@ -2,13 +2,17 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useWine } from "../context/WineContext"
 import EditWineryModal from "../components/EditWineryModal"
+import ModaleConferma from "../components/ModaleConferma";
+import { useWinery } from "../context/WineryContext";
 
 export default function DettagliCantina() {
     const [winery, setwinery] = useState(null)
     const { isAdmin } = useWine()
+    const{removeWinery} = useWinery()
     const idParams = useParams()
     const id = parseInt(idParams.id)
     const [showmodal, setShowModal] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
 
     // Da fare try and catch
 
@@ -61,7 +65,10 @@ export default function DettagliCantina() {
                         </a>
                     </div>
                     {isAdmin &&
-                        <button onClick={() => setShowModal(true)}>Modifica Cantina</button>
+                        <div>
+                            <button onClick={() => setShowModal(true)}>Modifica Cantina</button>
+                            <button onClick={() => setShowConfirm(true)}>Elimina</button>
+                        </div>
                     }
                 </div>
             )}
@@ -71,9 +78,15 @@ export default function DettagliCantina() {
                     onClose={() => {
                         setShowModal(false)
                     }}
-
                 />
             </div>}
+            {showConfirm &&
+                        <ModaleConferma
+                        text={`Sicuro di volere eliminare ${winery.title}`}
+                        onClose={() => setShowConfirm(false)}
+                        onConfirm={() => removeWinery(winery.id)}
+                        />
+                        }
 
         </>
     )

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, } from "react"
+import { useNavigate } from "react-router-dom"
 
 const WineContext = createContext()
 
@@ -16,6 +17,8 @@ export const WineProvider = ({ children }) => {
         const saved = localStorage.getItem("favorites")
         return saved ? JSON.parse(saved) : []
     })
+
+    const navigate = useNavigate()
 
 
     const apiUrl = "http://localhost:3001/wines"
@@ -50,9 +53,6 @@ export const WineProvider = ({ children }) => {
     }
 
 
-    const clear = () => {
-        setWineToCompareId([])
-    }
 
     // FAVORITI
     const addFavorites = (elem) => {
@@ -118,6 +118,7 @@ export const WineProvider = ({ children }) => {
                     alert("Dati mandati con successo")
                     console.log("Vino aggiounto con successo")
                     setWines((prev) => [...prev, data.wine])
+                    navigate("/")
                 })
         }
         catch (error) {
@@ -132,8 +133,9 @@ export const WineProvider = ({ children }) => {
         try {
             fetch(`${apiUrl}/${id}`, { method: "DELETE" })
                 .then(() => {
-                    alert(`Vino con id ${id} è stato rimosso dalla lista`)
+                    alert(`Il vino è stato rimosso con successo`)
                     setWines((prev) => prev.filter((w) => w.id !== id))
+                    navigate("/")
                 }
                 )
 
@@ -160,6 +162,7 @@ export const WineProvider = ({ children }) => {
                 console.log(data)
                     alert("Vino modificato con successo")
                     setWines(prev => prev.map(w => w.id === id ? data.wine : w))
+                    navigate(`/`)
                 })
         }
         catch (error) {
@@ -177,7 +180,6 @@ export const WineProvider = ({ children }) => {
                 addCompare,
                 addFavorites,
                 favorites,
-                clear,
                 isAdmin,
                 login,
                 logout,

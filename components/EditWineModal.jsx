@@ -26,6 +26,11 @@ export default function EditWineModal({ show, wine, onClose, onSave }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if (!titleRef.current.value.trim() || !isNaN(titleRef.current.value)) {
+            alert("Inserire un nome valido!")
+            return
+        }
+
         const updatedWine = {
             title: titleRef.current.value,
             category: categoryRef.current.value,

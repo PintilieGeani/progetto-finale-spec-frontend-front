@@ -21,6 +21,11 @@ export default function EditWineryModal({ show, winery, onClose, onSave }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if (!titleRef.current.value.trim() || !isNaN(titleRef.current.value)) {
+            alert("Inserire un nome valido!")
+            return
+        }
+
         const updatedWinery = {
             title: titleRef.current.value,
             category: categoryRef.current.value,
@@ -47,7 +52,7 @@ export default function EditWineryModal({ show, winery, onClose, onSave }) {
                 <label>Nome</label>
                 <input type="text" defaultValue={winery.title} ref={titleRef} />
 
-                  <label>Categoria</label>
+                <label>Categoria</label>
                 <select defaultValue={winery.category} ref={categoryRef}>
                     <option value="Tradizionale">Tradizionale</option>
                     <option value="Industriale">Industriale</option>

@@ -1,21 +1,23 @@
 /* Debug */
-nav{
+nav {
     margin: 10px;
     display: flex;
     gap: 50px;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+
 form input,
 form select,
 form textarea,
 form button {
     width: 50%;
 }
+
 /* Fine Debug */
 
 /* RESET CSS */
@@ -107,10 +109,51 @@ form button {
 
 
 /* FAVORITES */
-.favorites-card-container{
+.favorites-card-container {
     width: 80%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+/* overlay scuro */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* sfondo scuro trasparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    /* sopra tutto */
+}
+
+/* contenitore della modale */
+.modal {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    /* responsive */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+/* animazione di comparsa */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

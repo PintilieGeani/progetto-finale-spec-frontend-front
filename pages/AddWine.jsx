@@ -31,6 +31,11 @@ export default function AddWine() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if (!titolo.current.value.trim() || !isNaN(titolo.current.value)) {
+            alert("Inserire un nome valido!")
+            return
+        }
+
         const newWine = {
             title: titolo.current.value,
             category: categoria.current.value,

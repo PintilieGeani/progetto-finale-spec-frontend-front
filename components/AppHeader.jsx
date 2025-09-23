@@ -9,16 +9,20 @@ export default function AppHeader(){
     return(
         <>
         <header>
-        <h2>Io sono il header</h2>
         <nav>
+            <div className="logo">
+                <img src="img/logo.png" alt="Logo" />
+            </div>
+            <div className="links">
             <NavLink to="/">Lista vini</NavLink>
             <NavLink to="/compare">Comparatore</NavLink>
             <NavLink to="/preferiti">Preferiti</NavLink>
             <NavLink to="/cantine">Lista cantine</NavLink>
-            <NavLink to="/login">Login</NavLink>
+            {isAdmin ? "" : <NavLink to="/login">Login</NavLink>}
             {isAdmin && <NavLink to = {"add-wine"}>Aggiungi Vino</NavLink>}
             {isAdmin && <NavLink to = {"add-winery"}>Aggiungi Cantina</NavLink>}
             {isAdmin && <button onClick={logout}>Logout</button>}
+            </div>
         </nav>
         </header>
         </>

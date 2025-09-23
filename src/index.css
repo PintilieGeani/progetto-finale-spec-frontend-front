@@ -1,9 +1,5 @@
 /* Debug */
-nav {
-    margin: 10px;
-    display: flex;
-    gap: 50px;
-}
+
 
 form {
     display: flex;
@@ -18,7 +14,15 @@ form button {
     width: 50%;
 }
 
+html {
+    scrollbar-width: none;
+}
+
+
 /* Fine Debug */
+
+
+
 
 /* RESET CSS */
 * {
@@ -27,6 +31,16 @@ form button {
     box-sizing: border-box;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Fine RESET */
+
+
+
+/* CARD */
 .card-container {
     width: 80%;
     margin: 0 auto;
@@ -56,6 +70,8 @@ form button {
     align-items: center;
 }
 
+/* Fine CARD */
+
 
 /* TABELLA */
 .wine-table {
@@ -74,6 +90,8 @@ form button {
 .wine-table th {
     background-color: #f5f5f5;
 }
+
+/* Fine TABELLA */
 
 
 /* COMPARATORE */
@@ -106,6 +124,8 @@ form button {
     width: 100%;
 }
 
+/* Fine COMPARATORE */
+
 
 
 /* FAVORITES */
@@ -117,7 +137,14 @@ form button {
     gap: 20px;
 }
 
-/* overlay scuro */
+/* Fine FAVORITES */
+
+
+
+
+
+/* MODALI */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -133,7 +160,6 @@ form button {
     /* sopra tutto */
 }
 
-/* contenitore della modale */
 .modal {
     background: #fff;
     padding: 20px 30px;
@@ -157,3 +183,89 @@ form button {
         transform: translateY(0);
     }
 }
+
+/* Fine Modali */
+
+
+/* HEADER */
+
+header {
+    background-color: #722F37;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+}
+
+.logo {
+    width: 10%;
+}
+
+.logo img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    color: #C5A46D;
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: "Lato", sans-serif;
+    margin-right: 10px;
+}
+
+.links a {
+  position: relative;
+  text-decoration: none;
+  padding: 5px 5px;
+  transition: transform 0.3s ease;
+}
+
+/* Linea base */
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #C5A46D;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Effetto hover per i link NON attivi */
+.links a:hover::after {
+  width: 100%;
+}
+
+/* Stato active */
+.links a.active {
+  transform: translateY(-10px); /* lo alzi */
+}
+
+/* La linea sempre visibile solo per l'active */
+.links a.active::after {
+  width: 100%;
+}
+
+
+.links button {
+    background-color: transparent;
+    color: #C5A46D;
+    font-size: 1rem;
+    border: 2px solid;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-family: "Lato", sans-serif;
+}
+
+/* Fine HEADER */

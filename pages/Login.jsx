@@ -21,8 +21,9 @@ export default function Login(){
     }
 
     return (
-        <div>
+        <div className="login">
             <h1>Login Admin</h1>
+            <form action="">
             <label htmlFor="username">Username</label>
             <input type="text"
             value={username}
@@ -35,6 +36,7 @@ export default function Login(){
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Inserisci la tua password"
             />
+            </form>
             <button onClick={() => handleLogin(username, password)}>Entra come Admin</button>
         </div>
     )

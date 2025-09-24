@@ -98,10 +98,12 @@ export default function ListaCantine() {
 
     return (
         <>
-            <h1>Sono la lista delle cantine</h1>
-            <input type="text"
+            <div className="winery-hero">
+                <h1 className="titolo">Le nostre cantine</h1>
+            </div>
+            <input className="search" type="text"
                 value={query}
-                placeholder="Cerca il tuo vino..."
+                placeholder="Cerca la tua cantina..."
                 onChange={(e) => {
                     setQuery(e.target.value)
                     debounceQuery(e.target.value)

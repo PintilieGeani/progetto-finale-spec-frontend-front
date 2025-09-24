@@ -1,5 +1,5 @@
 // IMPORTS
-import { useCallback, useState, useEffect, useMemo,  } from "react"
+import { useCallback, useState, useEffect, useMemo, } from "react"
 import { useWine } from "../context/WineContext"
 import { Link, useNavigate } from "react-router-dom"
 import ModaleConferma from "../components/ModaleConferma";
@@ -23,10 +23,10 @@ export default function ListaVini() {
     const [sortBy, setSortBy] = useState("Categoria")
     const [sortOrder, setSortOrder] = useState(1)
     const [filtro, setFiltro] = useState("")
-    
+
 
     const navigate = useNavigate()
- 
+
 
 
     // DEBOUNCE
@@ -105,8 +105,11 @@ export default function ListaVini() {
 
     return (
         <>
-            <h1>Sono la lista dei vini</h1>
-            <input type="text"
+            <div className="wine-hero">
+                <h1 className="titolo">I nostri vini</h1>
+            </div>
+            <div className="container">
+            <input className="search" type="text"
                 value={query}
                 placeholder="Cerca il tuo vino..."
                 onChange={(e) => {
@@ -145,7 +148,14 @@ export default function ListaVini() {
                                 <td>
                                     <Link to={`/wine/${wine.id}`}>{wine.title}</Link>
                                 </td>
-                                <td>{wine.category}</td>
+                                <td>
+                                    {/* {wine.category === "Rosso" && "🍷"}
+                                    {wine.category === "Bianco" && "⚪"}
+                                    {wine.category === "Rosé" && "🌸"}
+                                    {wine.category === "Spumante" && "🍾"}
+                                    {wine.category === "Dessert" && "🍰"} */}
+                                    {wine.category}
+                                </td>
                                 <td>
                                     <button onClick={() => addCompare(wine)}>Confronta</button>
                                     <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
@@ -162,6 +172,7 @@ export default function ListaVini() {
                     </tbody>
                 </table>
                 : <div>Nessun vino trovato</div>}
+            </div>
 
         </>
     )

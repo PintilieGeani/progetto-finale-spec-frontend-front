@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useWine } from "../context/WineContext"
 import Login from "../pages/Login"
 
 export default function AppHeader(){
+
+    const navigate = useNavigate()
 
     const {isAdmin, logout} = useWine()
 
@@ -18,7 +20,7 @@ export default function AppHeader(){
             <NavLink to="/compare">Comparatore</NavLink>
             <NavLink to="/preferiti">Preferiti</NavLink>
             <NavLink to="/cantine">Lista cantine</NavLink>
-            {isAdmin ? "" : <NavLink to="/login">Login</NavLink>}
+            {isAdmin ? "" : <button onClick={() => navigate("/login")}>Login</button>}
             {isAdmin && <NavLink to = {"add-wine"}>Aggiungi Vino</NavLink>}
             {isAdmin && <NavLink to = {"add-winery"}>Aggiungi Cantina</NavLink>}
             {isAdmin && <button onClick={logout}>Logout</button>}

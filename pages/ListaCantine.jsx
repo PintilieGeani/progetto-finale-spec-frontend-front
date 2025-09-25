@@ -2,6 +2,7 @@ import { useWinery } from "../context/WineryContext"
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useWine } from "../context/WineContext";
+import WineryCompareModal from "../components/WineryCompareModal";
 
 function debounce(func, delay) {
     let timer;
@@ -12,7 +13,7 @@ function debounce(func, delay) {
 }
 
 export default function ListaCantine() {
-    const { winerys, addCompare, addFavorites, removeWinery } = useWinery()
+    const { winerys, addCompare, addFavorites,  wineryToCompareId, setWineryToCompareId, wineryFavorites } = useWinery()
     const {isAdmin} = useWine()
     const [filteredWinerys, setFilteredWinerys] = useState([]);
     const [query, setQuery] = useState("")
@@ -141,8 +142,8 @@ export default function ListaCantine() {
                             </td>
                             <td>{winery.category}</td>
                             <td>
-                                <button onClick={() => addCompare(winery)}>Confronta</button>
-                                <button onClick={() => addFavorites(winery)}>Aggiungi ai preferiti</button>
+                                <button className={wineryToCompareId.some((e) => e.id === winery.id) ? "inCompare" : ""} onClick={() => addCompare(winery)}>Confronta</button>
+                                <button className={wineryFavorites.some(fav => fav.id === winery.id) ? "inFavorites" : ""} onClick={() => addFavorites(winery)}>Aggiungi ai preferiti</button>
                             </td>
                             {isAdmin &&
                                 <td>
@@ -155,6 +156,16 @@ export default function ListaCantine() {
                     ))}
                 </tbody>
             </table>
+
+             {wineryToCompareId.length > 0 && 
+                            <WineryCompareModal 
+                                data={winerys}
+                                ids={wineryToCompareId}
+                                onGo={() => navigate("/compare")}
+                                onClose={() => {
+                                    setWineryToCompareId([])
+                                }}
+                                />}
         </>
     )
 }

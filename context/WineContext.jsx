@@ -44,11 +44,11 @@ export const WineProvider = ({ children }) => {
 
     // COMPARATORE
     const addCompare = (elem) => {
-        if (wineToCompareId.includes(elem.id)) {
+        if (wineToCompareId.some((e) => e.id === elem.id)) {
             console.log("elemento già presente nella lista")
         } else {
             console.log("Aggiunto alla lista", elem.title)
-            setWineToCompareId([...wineToCompareId, elem.id])
+            setWineToCompareId([...wineToCompareId, elem])
         }
     }
 
@@ -176,6 +176,7 @@ export const WineProvider = ({ children }) => {
         <WineContext.Provider
             value={{
                 wineToCompareId: wineToCompareId,
+                setWineToCompareId,
                 wines: wines,
                 addCompare,
                 addFavorites,

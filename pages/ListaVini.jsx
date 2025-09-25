@@ -2,7 +2,7 @@
 import { useCallback, useState, useEffect, useMemo, } from "react"
 import { useWine } from "../context/WineContext"
 import { Link, useNavigate } from "react-router-dom"
-import ModaleConferma from "../components/ModaleConferma";
+import WineCompareModal from "../components/WineCompareModal";
 
 
 function debounce(func, delay) {
@@ -16,13 +16,14 @@ function debounce(func, delay) {
 export default function ListaVini() {
 
     // Dati
-    const { wines, addCompare, addFavorites, isAdmin, addWine, removeWine, updateWine } = useWine()
+    const { wines, addCompare, addFavorites, isAdmin, wineToCompareId, setWineToCompareId, favorites} = useWine()
     const [filteredWines, setFilteredWines] = useState([]);
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")
     const [sortBy, setSortBy] = useState("Categoria")
     const [sortOrder, setSortOrder] = useState(1)
     const [filtro, setFiltro] = useState("")
+
 
 
     const navigate = useNavigate()
@@ -100,7 +101,8 @@ export default function ListaVini() {
     }, [filteredWines, sortBy, sortOrder])
 
 
-    console.log(filteredWines)
+    console.log(wineToCompareId)
+    console.log(favorites)
 
 
     return (
@@ -157,8 +159,8 @@ export default function ListaVini() {
                                     {wine.category}
                                 </td>
                                 <td>
-                                    <button onClick={() => addCompare(wine)}>Confronta</button>
-                                    <button onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
+                                    <button className={wineToCompareId.some((e) => e.id === wine.id) ? "inCompare" : ""} onClick={() => addCompare(wine)}>Confronta</button>
+                                    <button className={favorites.some(fav => fav.id === wine.id) ? "inFavorites" : ""} onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
                                 </td>
                                 {isAdmin &&
                                     <td>
@@ -172,6 +174,16 @@ export default function ListaVini() {
                     </tbody>
                 </table>
                 : <div>Nessun vino trovato</div>}
+                {wineToCompareId.length > 0 && 
+                <WineCompareModal 
+                    data={wines}
+                    ids={wineToCompareId}
+                    onGo={() => navigate("/compare")}
+                    onClose={() => {
+                        setWineToCompareId([])
+                    }}
+                    />}
+                    
             </div>
 
         </>

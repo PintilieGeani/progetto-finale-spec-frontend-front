@@ -45,10 +45,8 @@ export default function Preferiti() {
 
     return(
         <>
-        <div>
-            <h1>Sono la pagina dei preferiti</h1>
-        </div> 
-        <h2>Vini</h2>
+        <div className="container">
+        <h2 className="sottotitolo">I miei vini</h2>
         <div className="favorites-card-container">
                 {favoritesList.length > 0 ? 
                 favoritesList.map((wine) => (
@@ -79,11 +77,14 @@ export default function Preferiti() {
                             <p>{wine.note}</p>
                             <p>Da abbinare con: {wine.pairings.join(", ")}</p>
                         </div>
+                        <div className="prezzo">
+                            <p>Prezzo: {wine.priceEUR} € </p>
+                        </div>
                     </div>
                 ))
                 : <div>Nessun vino salvato tra i preferiti</div>}
             </div>
-            <h2>Cantine</h2>
+            <h2 className="sottotitolo">Le mie cantine</h2>
             <div className="favorites-card-container">
                 {wineryFavoritesList.length > 0 ? 
                      wineryFavoritesList.map((winery) => (
@@ -124,6 +125,7 @@ export default function Preferiti() {
             </div>
 
             {/* <button onClick={clear}>Pulisci Storage</button> */}
+        </div>
         </>
     )
 }

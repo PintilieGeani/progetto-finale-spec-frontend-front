@@ -4,7 +4,7 @@ import { useWinery } from "../context/WineryContext"
 
 
 export default function Comparatore() {
-    const { wineToCompareId, clear } = useWine()
+    const { wineToCompareId } = useWine()
     const { wineryToCompareId } = useWinery()
     const [wineCompareList, setWineCompareList] = useState([])
     const [wineryCompareList, setWineryCompareList] = useState([])
@@ -14,8 +14,8 @@ export default function Comparatore() {
     // Vini
     useEffect(() => {
 
-        const promises = wineToCompareId.map((id) =>
-            fetch(`http://localhost:3001/wines/${id}`)
+        const promises = wineToCompareId.map((elem) =>
+            fetch(`http://localhost:3001/wines/${elem.id}`)
         )
 
 
@@ -28,8 +28,8 @@ export default function Comparatore() {
 
     useEffect(() => {
 
-        const promises = wineryToCompareId.map((id) =>
-            fetch(`http://localhost:3001/wineries/${id}`)
+        const promises = wineryToCompareId.map((elem) =>
+            fetch(`http://localhost:3001/wineries/${elem.id}`)
         )
 
 
@@ -110,8 +110,6 @@ export default function Comparatore() {
                     </div>
                 ))}
             </div>
-
-            <button onClick={clear}>Pulisci Storage</button>
         </>
     )
 }

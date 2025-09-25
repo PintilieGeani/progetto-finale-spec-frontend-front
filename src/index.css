@@ -40,37 +40,77 @@ a {
 
 
 
+
+
+
+
+
 /* CARD */
-.card-container {
-    width: 80%;
-    margin: 0 auto;
+.compare-card-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 30px;
+    margin: 0 auto;
+    width: 90%;
+    overflow-x: auto;
 }
 
-.card-img {
-    width: 70%;
-    border: 1px solid green;
-    padding: 5px;
+.compare-card {
+    border: 2px solid #C5A46D;
+    flex-shrink: 0;
+    padding: 20px;
+    width: 30%;
+    font-family: "Lato", sans-serif;
 }
 
-.card-img img {
+.compare-card-text {
+    text-align: center;
+    line-height: 30px;
+}
+
+.compare-card-img {
+    margin: 20px auto;
+    width: 90%;
+}
+
+.compare-card-img img {
     object-fit: contain;
     width: 100%;
 }
 
-.card {
-    border: 1px solid black;
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.compare-card-info p {
+    margin: 5px 0px;
+}
+
+.compare-card-carateristiche {
+    margin: 20px 0px;
+}
+
+.compare-card-carateristiche p {
+    margin: 5px 0px;
+}
+
+.note-abbinamenti {
+    margin: 20px 0px;
+}
+
+.prezzo {
+    text-align: center;
+    color: #722F37;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 /* Fine CARD */
+
+
+
+
+
+
+
+
+
 
 
 /* TABELLA */
@@ -85,12 +125,12 @@ a {
 }
 
 .wine-table thead {
-  position: sticky;
-  top: 100px;
-  background-color: #722F37;
-  color: #C5A46D;
-  z-index: 5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 100px;
+    background-color: #722F37;
+    color: #C5A46D;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .wine-table th,
@@ -145,38 +185,34 @@ a {
     color: #C5A46D;
 }
 
+.wine-table button.inCompare {
+    background-color: #722F37 !important;
+    color: #C5A46D !important;
+}
+
+.wine-table button.inFavorites {
+    background-color: #722F37 !important;
+    color: #C5A46D !important;
+}
+
 /* Fine TABELLA */
 
 
+
+
+
+/* CONTAINER */
+.container {
+    margin-top: 100px;
+}
+
+/* FINE CONTAINER */
+
+
+
+
 /* COMPARATORE */
-.compare-card-container {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 30px;
-    margin: 0 auto;
-    width: 90%;
-    overflow-x: auto;
-}
 
-.compare-card {
-    border: 1px solid black;
-    flex-shrink: 0;
-    padding: 10px;
-    width: 30%;
-    margin: 10px;
-}
-
-.compare-card-img {
-    margin: 0 auto;
-    width: 70%;
-    border: 1px solid green;
-    padding: 5px;
-}
-
-.compare-card-img img {
-    object-fit: contain;
-    width: 100%;
-}
 
 /* Fine COMPARATORE */
 
@@ -185,10 +221,22 @@ a {
 /* FAVORITES */
 .favorites-card-container {
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
+}
+
+.sottotitolo {
+    font-size: 3rem;
+    text-align: center;
+    color: #722F37;
+    padding: 20px;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+
 }
 
 /* Fine FAVORITES */
@@ -238,7 +286,131 @@ a {
     }
 }
 
+/* Modal Compare */
+.compare-modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 2px solid #C5A46D;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    font-family: "Lato", sans-serif;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.compare-title {
+    font-size: 1.2rem;
+    color: #722F37;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.compare-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.compare-list {
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.compare-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #C5A46D;
+    font-size: 0.9rem;
+}
+
+.compare-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.compare-actions button,
+.compare-list .btn-close {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #722F37;
+    color: #722F37;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+.compare-actions button::before,
+.compare-list .btn-close::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #722F37;
+    z-index: -1;
+    transition: height 0.4s ease;
+}
+
+.compare-actions button:hover::before,
+.compare-list .btn-close:hover::before {
+    height: 100%;
+}
+
+.compare-actions button:hover,
+.compare-list .btn-close:hover {
+    color: #C5A46D;
+}
+
+/* Variante per il bottone "Confronta" (btn-go) */
+.compare-actions .btn-go {
+    border: 1px solid #722F37;
+    color: #722F37;
+}
+
+/* Variante per il bottone "Chiudi" (btn-close) */
+.compare-actions .btn-close,
+.compare-list .btn-close {
+    border: 1px solid #722F37;
+    color: #722F37;
+}
+
+/* Fine Modal Compare */
+
 /* Fine Modali */
+
+
+
+
+
 
 
 /* HEADER */
@@ -247,6 +419,7 @@ header {
     background-color: #722F37;
     position: fixed;
     top: 0;
+    z-index: 10;
 }
 
 nav {
@@ -257,7 +430,7 @@ nav {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.login{
+.login {
     margin-top: 100px;
 }
 
@@ -326,8 +499,8 @@ nav {
     align-items: center;
     border-radius: 5px;
     font-family: "Playfair Display", serif;
-    z-index: 1;
     transition: color 0.3s ease;
+    z-index: 1;
 }
 
 
@@ -339,9 +512,9 @@ nav {
     width: 100%;
     height: 0;
     background-color: #C5A46D;
-    z-index: -1;
     transition: height 0.5s ease;
     border-radius: 3px;
+    z-index: -1;
 }
 
 
@@ -365,7 +538,7 @@ nav {
 
 
 /* HERO */
-.wine-hero{
+.wine-hero {
     width: 100%;
     height: 900px;
     background-image: url(/public/img/hero-wine.png);
@@ -377,7 +550,7 @@ nav {
     margin-top: 100px;
 }
 
-.winery-hero{
+.winery-hero {
     width: 100%;
     height: 900px;
     background-image: url(/public/img/hero-winery.png);
@@ -389,7 +562,7 @@ nav {
     margin-top: 100px;
 }
 
-.titolo{
+.titolo {
     color: #C5A46D;
     font-size: 4rem;
     background-color: rgba(0, 0, 0, 0.5);
@@ -429,7 +602,8 @@ nav {
     margin: 30px auto;
     display: block;
 }
-.filtro label{
+
+.filtro label {
     margin-right: 20px;
     font-family: "Lato, sans-serif";
 }
@@ -463,4 +637,5 @@ select::placeholder {
     font-weight: 600;
     font-family: "Lato, sans-serif";
 }
+
 /* Fine Form Generics */

@@ -36,11 +36,11 @@ export  function WineryProvider ({children}) {
 
         // COMPARATORE
     const addCompare = (elem) => {
-        if (wineryToCompareId.includes(elem.id)) {
+        if (wineryToCompareId.some((e) => e === elem.id)) {
             console.log("elemento già presente nella lista")
         } else {
             console.log("Aggiunto alla lista", elem.title)
-            setWineryToCompareId([...wineryToCompareId, elem.id])
+            setWineryToCompareId([...wineryToCompareId, elem])
         }
     }
 
@@ -141,6 +141,7 @@ export  function WineryProvider ({children}) {
         value={{
             winerys: winerys,
             wineryToCompareId: wineryToCompareId,
+            setWineryToCompareId,
             wineryFavorites: wineryFavorites,
             addCompare,
             addFavorites,

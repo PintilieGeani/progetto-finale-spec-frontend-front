@@ -181,6 +181,7 @@ export const WineProvider = ({ children }) => {
                 addCompare,
                 addFavorites,
                 favorites,
+                setFavorites,
                 isAdmin,
                 login,
                 logout,

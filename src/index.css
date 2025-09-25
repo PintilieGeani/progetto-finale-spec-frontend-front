@@ -57,15 +57,27 @@ a {
 
 .compare-card {
     border: 2px solid #C5A46D;
-    flex-shrink: 0;
     padding: 20px;
     width: 30%;
     font-family: "Lato", sans-serif;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .compare-card-text {
     text-align: center;
     line-height: 30px;
+}
+
+.compare-card-text,
+.compare-card-img,
+.compare-card-info,
+.compare-card-carateristiche,
+.note-abbinamenti,
+.prezzo {
+    margin-bottom: 10px;
 }
 
 .compare-card-img {
@@ -82,23 +94,59 @@ a {
     margin: 5px 0px;
 }
 
-.compare-card-carateristiche {
-    margin: 20px 0px;
-}
 
 .compare-card-carateristiche p {
-    margin: 5px 0px;
+    margin-bottom: 5px;
 }
 
-.note-abbinamenti {
-    margin: 20px 0px;
-}
 
 .prezzo {
     text-align: center;
     color: #722F37;
     font-size: 1.3rem;
     font-weight: 700;
+}
+
+.compare-card button {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    color: #722F37;
+    border: 1px solid #722F37;
+    margin: 10px 0;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-family: "Lato", sans-serif;
+    transition: color 0.3s ease;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.compare-card button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #722F37;
+    z-index: -1;
+    transition: height 0.4s ease;
+}
+
+.compare-card button:hover::before {
+    height: 100%;
+}
+
+.compare-card button:hover {
+    color: #C5A46D;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 /* Fine CARD */
@@ -236,7 +284,6 @@ a {
     display: block;
     margin: 0 auto;
     border-radius: 5px;
-
 }
 
 /* Fine FAVORITES */

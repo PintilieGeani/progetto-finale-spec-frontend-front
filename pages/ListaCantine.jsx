@@ -97,6 +97,10 @@ export default function ListaCantine() {
 
     }, [filteredWinerys, sortBy, sortOrder])
 
+    useEffect(() => {
+        setWineryToCompareId([])
+    }, [])
+
     return (
         <>
             <div className="winery-hero">

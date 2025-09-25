@@ -4,8 +4,8 @@ import { useWinery } from "../context/WineryContext"
 
 export default function Preferiti() {
         
-    const{ favorites, clear } = useWine()
-    const {wineryFavorites} = useWinery()
+    const{ favorites, setFavorites } = useWine()
+    const {wineryFavorites, setWineryFavorites} = useWinery()
     const [favoritesList, setFavoritesList] = useState([])
     const [wineryFavoritesList, setWineryFavoritesList] = useState([])
 
@@ -80,6 +80,9 @@ export default function Preferiti() {
                         <div className="prezzo">
                             <p>Prezzo: {wine.priceEUR} € </p>
                         </div>
+                        <div className="btns" >
+                            <button onClick={() => setFavorites((prev) => prev.filter((e) => e.id !== wine.id))}>Elimina</button>
+                        </div>
                     </div>
                 ))
                 : <div>Nessun vino salvato tra i preferiti</div>}
@@ -117,6 +120,9 @@ export default function Preferiti() {
                             <a href={winery.website} target="_blank" rel="noreferrer">
                                 Visita il sito
                             </a>
+                        </div>
+                        <div className="btns" >
+                            <button onClick={() => setWineryFavorites((prev) => prev.filter((e) => e.id !== winery.id))}>Elimina</button>
                         </div>
                     </div>
                 ))

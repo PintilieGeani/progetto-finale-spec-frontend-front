@@ -143,6 +143,7 @@ export  function WineryProvider ({children}) {
             wineryToCompareId: wineryToCompareId,
             setWineryToCompareId,
             wineryFavorites: wineryFavorites,
+            setWineryFavorites,
             addCompare,
             addFavorites,
             addWinery,

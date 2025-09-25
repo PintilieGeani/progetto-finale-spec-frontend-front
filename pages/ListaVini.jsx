@@ -100,6 +100,10 @@ export default function ListaVini() {
 
     }, [filteredWines, sortBy, sortOrder])
 
+    useEffect(() => {
+        setWineToCompareId([])
+    }, [])
+
 
     console.log(wineToCompareId)
     console.log(favorites)

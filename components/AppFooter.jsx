@@ -1,7 +1,9 @@
 export default function AppFooter(){
     return(
         <>
-        <h2>Io sono il Footer</h2>
+        <footer>
+            <h3>Creato con &#10084; da Pintilie Geani </h3>
+        </footer>
         </>
     )
 } 

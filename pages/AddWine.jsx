@@ -65,78 +65,99 @@ export default function AddWine() {
 
 
 
-    return (
-        <>
-            <h1>Sono la pagina di aggiunta Vino</h1>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label>Titolo</label>
-                    <input ref={titolo} type="text" name="title" />
-
-                    <label>Categoria</label>
-                    <select ref={categoria} name="category">
-                        <option value="">Seleziona una categoria</option>
-                        <option value="Rosso">Rosso</option>
-                        <option value="Bianco">Bianco</option>
-                        <option value="Rosé">Rosé</option>
-                        <option value="Spumante">Spumante</option>
-                        <option value="Dessert">Dessert</option>
-                    </select>
-
-                    <label>Cantina</label>
-                    <input type="text" name="winery" ref={cantina} />
-
-                    <label>Regione</label>
-                    <input type="text" name="region" ref={regione} />
-
-                    <label>Paese</label>
-                    <input type="text" name="country" ref={paese} />
-
-                    <label>Uve (separate da virgola)</label>
-                    <input type="text" name="grapes" ref={uve} />
-
-                    <label>Annata</label>
-                    <input type="number" name="vintage" ref={annata} />
-
-                    <label>Gradazione alcolica (ABV)</label>
-                    <input type="number" step="0.1" name="abv" ref={abv} />
-
-                    <label>Dolcezza (1-5)</label>
-                    <input type="number" min="1" max="5" name="sweetness" ref={dolcezza} />
-
-                    <label>Acidità (1-5)</label>
-                    <input type="number" min="1" max="5" name="acidity" ref={acidità} />
-
-                    <label>Corpo (1-5)</label>
-                    <input type="number" min="1" max="5" name="body" ref={corpo} />
-
-                    <label>Tannini (1-5)</label>
-                    <input type="number" min="1" max="5" name="tannin" ref={tannini} />
-
-                    <label>Prezzo (€)</label>
-                    <input type="number" step="0.01" name="priceEUR" ref={prezzo} />
-
-                    <label>Punteggio</label>
-                    <input type="number" name="score" ref={punteggio} />
-
-                    <label>URL immagine</label>
-                    <input type="text" name="imageUrl" ref={immagine} />
-
-                    <label>Note</label>
-                    <textarea name="notes" rows="3" ref={note} />
-
-                    <label>Abbinamenti (separati da virgola)</label>
-                    <input type="text" name="pairings" ref={abbinamenti} />
-
-                    <label>Denominazione (Appellation)</label>
-                    <input type="text" name="appellation" ref={denominazione} />
-
-                    <label>Formato bottiglia (ml)</label>
-                    <input type="number" name="bottleSizeMl" ref={bottiglia} />
-
-                    <button type="submit">Aggiungi Vino</button>
-                </form>
-            </div>
-        </>
+     return (
+        <div className="page-container">
+            <h1 className="page-title">Aggiungi Vino</h1>
+            <form onSubmit={handleSubmit} className="form-container">
+                <div className="form-grid">
+                    <div className="form-group">
+                        <label>Titolo</label>
+                        <input ref={titolo} type="text" name="title" />
+                    </div>
+                    <div className="form-group">
+                        <label>Categoria</label>
+                        <select ref={categoria} name="category">
+                            <option value="">Seleziona una categoria</option>
+                            <option value="Rosso">Rosso</option>
+                            <option value="Bianco">Bianco</option>
+                            <option value="Rosé">Rosé</option>
+                            <option value="Spumante">Spumante</option>
+                            <option value="Dessert">Dessert</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Cantina</label>
+                        <input type="text" name="winery" ref={cantina} />
+                    </div>
+                    <div className="form-group">
+                        <label>Regione</label>
+                        <input type="text" name="region" ref={regione} />
+                    </div>
+                    <div className="form-group">
+                        <label>Paese</label>
+                        <input type="text" name="country" ref={paese} />
+                    </div>
+                    <div className="form-group">
+                        <label>Uve (separate da virgola)</label>
+                        <input type="text" name="grapes" ref={uve} />
+                    </div>
+                    <div className="form-group">
+                        <label>Annata</label>
+                        <input type="number" name="vintage" ref={annata} />
+                    </div>
+                    <div className="form-group">
+                        <label>Gradazione alcolica (ABV)</label>
+                        <input type="number" step="0.1" name="abv" ref={abv} />
+                    </div>
+                    <div className="form-group">
+                        <label>Dolcezza (1-5)</label>
+                        <input type="number" min="1" max="5" name="sweetness" ref={dolcezza} />
+                    </div>
+                    <div className="form-group">
+                        <label>Acidità (1-5)</label>
+                        <input type="number" min="1" max="5" name="acidity" ref={acidità} />
+                    </div>
+                    <div className="form-group">
+                        <label>Corpo (1-5)</label>
+                        <input type="number" min="1" max="5" name="body" ref={corpo} />
+                    </div>
+                    <div className="form-group">
+                        <label>Tannini (1-5)</label>
+                        <input type="number" min="1" max="5" name="tannin" ref={tannini} />
+                    </div>
+                    <div className="form-group">
+                        <label>Prezzo (€)</label>
+                        <input type="number" step="0.01" name="priceEUR" ref={prezzo} />
+                    </div>
+                    <div className="form-group">
+                        <label>Punteggio</label>
+                        <input type="number" name="score" ref={punteggio} />
+                    </div>
+                    <div className="form-group full">
+                        <label>URL immagine</label>
+                        <input type="text" name="imageUrl" ref={immagine} />
+                    </div>
+                    <div className="form-group full">
+                        <label>Note</label>
+                        <textarea name="notes" rows="3" ref={note} />
+                    </div>
+                    <div className="form-group full">
+                        <label>Abbinamenti (separati da virgola)</label>
+                        <input type="text" name="pairings" ref={abbinamenti} />
+                    </div>
+                    <div className="form-group">
+                        <label>Denominazione (Appellation)</label>
+                        <input type="text" name="appellation" ref={denominazione} />
+                    </div>
+                    <div className="form-group">
+                        <label>Formato bottiglia (ml)</label>
+                        <input type="number" name="bottleSizeMl" ref={bottiglia} />
+                    </div>
+                </div>
+                <div className="form-actions">
+                    <button type="submit" className="btn-primary">Aggiungi Vino</button>
+                </div>
+            </form>
+        </div>
     )
 }

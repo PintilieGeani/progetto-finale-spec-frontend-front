@@ -832,7 +832,11 @@ select::placeholder {
         1px -1px 0 #722F37,
         -1px 1px 0 #722F37,
         1px 1px 0 #722F37;
-    margin-bottom: 20px;
+    margin: 10px;
+}
+
+.dettagli-img{
+    margin: 20px;
 }
 
 .dettagli-img img {
@@ -926,3 +930,118 @@ select::placeholder {
 }
 
 /* Fine Dettagli */
+
+/* Pagina ADD */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  margin-top: 100px;
+}
+
+.page-title {
+  font-family: "Playfair Display", serif;
+  color: #722F37;
+  margin-bottom: 30px;
+}
+
+.form-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #722F37;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #C5A46D;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #722F37;
+  font-family: "Lato", sans-serif;
+}
+
+textarea {
+  resize: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #722F37;
+  border: 2px solid #722F37;
+  padding: 10px 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: #722F37;
+  z-index: -1;
+  transition: height 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  height: 100%;
+}
+
+.btn-primary:hover {
+  color: #C5A46D;
+}
+/* Fine Pagina ADD */
+
+
+
+/* FOOTER */
+footer{
+    height: 100px;
+    background-color: #722F37;
+    text-align: center;
+    line-height: 100px;
+    color: #C5A46D;
+    font-family: "Playfair Display", serif;
+    margin-top: 30px;
+}
+/* FINE FOOTER */

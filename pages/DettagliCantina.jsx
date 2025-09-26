@@ -31,41 +31,45 @@ export default function DettagliCantina() {
     console.log(winery)
     return (
         <>
-            <h1>Sono la pagina dei dettagli della cantina</h1>
             {winery && (
-                <div>
-                    <h3>{winery.title}</h3>
-                    <p><strong>Categoria:</strong> {winery.category}</p>
+                <div className="supercard">
+                    <h1 className="sottotitolo">{winery.title}</h1>
+                    <p className="categoria"><strong>Categoria:</strong> {winery.category}</p>
+                    <div className="dettagli-img">
+                    <img src= {`https://placehold.co/400x600/C5A46D/722F37?text=${winery.title}`}alt="" />
+                    </div>
+                    <div className="info">
                     <p><strong>Paese:</strong> {winery.country}</p>
                     <p><strong>Regione:</strong> {winery.region}</p>
                     <p><strong>Anno di fondazione:</strong> {winery.yearFounded}</p>
                     <p><strong>Ettari:</strong> {winery.hectares}</p>
                     <p><strong>Produzione annua:</strong> {winery.annualProduction}</p>
                     <p><strong>Vitigni:</strong> {winery.grapes.join(", ")}</p>
+                    </div>
 
-                    <div>
-                        <h5>Premi e riconoscimenti</h5>
+                    <div className="carateristiche">
+                        <h5 className="categoria">Premi e riconoscimenti</h5>
                         <p>{winery.awards.join(", ")}</p>
                     </div>
 
-                    <div>
-                        <h5>Note</h5>
+                    <div className="carateristiche">
+                        <h5 className="categoria">Note</h5>
                         <p>{winery.notes}</p>
                     </div>
 
-                    <div>
-                        <h5>Abbinamenti</h5>
+                    <div className="carateristiche">
+                        <h5 className="categoria">Abbinamenti</h5>
                         <p>{winery.pairings.join(", ")}</p>
                     </div>
 
-                    <div>
-                        <h5>Sito ufficiale</h5>
-                        <a href={winery.website} target="_blank" rel="noreferrer">
+                    <div className="carateristiche">
+                        <h5 className="categoria">Sito ufficiale</h5>
+                        <a  href={winery.website} target="_blank" rel="noreferrer">
                             {winery.website}
                         </a>
                     </div>
                     {isAdmin &&
-                        <div>
+                        <div className="dettagli-btns">
                             <button onClick={() => setShowModal(true)}>Modifica Cantina</button>
                             <button onClick={() => setShowConfirm(true)}>Elimina</button>
                         </div>

@@ -46,59 +46,90 @@ export default function EditWineryModal({ show, winery, onClose, onSave }) {
     }
 
     return (
-        <div>
-            <h2>Modifica Cantina</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Nome</label>
-                <input type="text" defaultValue={winery.title} ref={titleRef} />
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h2 className="modal-title">Modifica Cantina</h2>
+                <form onSubmit={handleSubmit} className="modal-form">
 
-                <label>Categoria</label>
-                <select defaultValue={winery.category} ref={categoryRef}>
-                    <option value="Tradizionale">Tradizionale</option>
-                    <option value="Industriale">Industriale</option>
-                    <option value="Biodinamica">Biodinamica</option>
-                    <option value="Naturale">Naturale</option>
-                    <option value="Biologica">Biologica</option>
-                </select>
+                    <div className="form-grid">
+                        <div className="form-group">
+                            <label>Nome</label>
+                            <input type="text" defaultValue={winery.title} ref={titleRef} />
+                        </div>
 
-                <label>Regione</label>
-                <input type="text" defaultValue={winery.region} ref={regionRef} />
+                        <div className="form-group">
+                            <label>Categoria</label>
+                            <select defaultValue={winery.category} ref={categoryRef}>
+                                <option value="Tradizionale">Tradizionale</option>
+                                <option value="Industriale">Industriale</option>
+                                <option value="Biodinamica">Biodinamica</option>
+                                <option value="Naturale">Naturale</option>
+                                <option value="Biologica">Biologica</option>
+                            </select>
+                        </div>
 
-                <label>Paese</label>
-                <input type="text" defaultValue={winery.country} ref={countryRef} />
+                        <div className="form-group">
+                            <label>Regione</label>
+                            <input type="text" defaultValue={winery.region} ref={regionRef} />
+                        </div>
 
-                <label>Anno di fondazione</label>
-                <input type="number" defaultValue={winery.yearFounded} ref={yearFoundedRef} />
+                        <div className="form-group">
+                            <label>Paese</label>
+                            <input type="text" defaultValue={winery.country} ref={countryRef} />
+                        </div>
 
-                <label>Ettari</label>
-                <input type="number" defaultValue={winery.hectares} ref={hectaresRef} />
+                        <div className="form-group">
+                            <label>Anno di fondazione</label>
+                            <input type="number" defaultValue={winery.yearFounded} ref={yearFoundedRef} />
+                        </div>
 
-                <label>Produzione annua</label>
-                <input type="number" defaultValue={winery.annualProduction} ref={annualProductionRef} />
+                        <div className="form-group">
+                            <label>Ettari</label>
+                            <input type="number" defaultValue={winery.hectares} ref={hectaresRef} />
+                        </div>
 
-                <label>Vitigni (separati da virgola)</label>
-                <input type="text" defaultValue={winery.grapes} ref={grapesRef} />
+                        <div className="form-group">
+                            <label>Produzione annua</label>
+                            <input type="number" defaultValue={winery.annualProduction} ref={annualProductionRef} />
+                        </div>
 
-                <label>Premi (separati da virgola)</label>
-                <input type="text" defaultValue={winery.awards} ref={awardsRef} />
+                        <div className="form-group">
+                            <label>Vitigni (separati da virgola)</label>
+                            <input type="text" defaultValue={winery.grapes} ref={grapesRef} />
+                        </div>
 
-                <label>Sito Web</label>
-                <input type="text" defaultValue={winery.website} ref={websiteRef} />
+                        <div className="form-group">
+                            <label>Premi (separati da virgola)</label>
+                            <input type="text" defaultValue={winery.awards} ref={awardsRef} />
+                        </div>
 
-                <label>URL immagine</label>
-                <input type="text" defaultValue={winery.imageUrl} ref={imageUrlRef} />
+                        <div className="form-group full">
+                            <label>Sito Web</label>
+                            <input type="text" defaultValue={winery.website} ref={websiteRef} />
+                        </div>
 
-                <label>Note</label>
-                <textarea rows="3" defaultValue={winery.notes} ref={notesRef} />
+                        <div className="form-group full">
+                            <label>URL immagine</label>
+                            <input type="text" defaultValue={winery.imageUrl} ref={imageUrlRef} />
+                        </div>
 
-                <label>Abbinamenti (separati da virgola)</label>
-                <input type="text" defaultValue={winery.pairings} ref={pairingsRef} />
+                        <div className="form-group full">
+                            <label>Note</label>
+                            <textarea rows="3" defaultValue={winery.notes} ref={notesRef} />
+                        </div>
 
-                <div>
-                    <button type="submit">Salva</button>
-                    <button type="button" onClick={onClose}>Annulla</button>
-                </div>
-            </form>
+                        <div className="form-group full">
+                            <label>Abbinamenti (separati da virgola)</label>
+                            <input type="text" defaultValue={winery.pairings} ref={pairingsRef} />
+                        </div>
+                    </div>
+
+                    <div className="modal-actions">
+                        <button type="submit" className="btn-danger">Salva</button>
+                        <button type="button" onClick={onClose} className="btn-danger">Annulla</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

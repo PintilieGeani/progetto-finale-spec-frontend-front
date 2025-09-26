@@ -49,57 +49,89 @@ export default function AddWinery() {
 
     return (
         <>
-            <h1>Sono la pagina di aggiunta Cantina</h1>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label>Nome</label>
-                    <input ref={titolo} type="text" name="title" />
+            <div className="page-container">
+    <h1 className="page-title">Aggiungi Cantina</h1>
+    <form onSubmit={handleSubmit} className="form-container">
+      <div className="form-grid">
+        <div className="form-group">
+          <label>Nome</label>
+          <input ref={titolo} type="text" name="title" />
+        </div>
 
-                    <label>Categoria</label>
-                    <select ref={categoria}>
-                        <option value="Tradizionale">Tradizionale</option>
-                        <option value="Industriale">Industriale</option>
-                        <option value="Biodinamica">Biodinamica</option>
-                        <option value="Naturale">Naturale</option>
-                        <option value="Biologica">Biologica</option>
-                    </select>
+        <div className="form-group">
+          <label>Categoria</label>
+          <select ref={categoria}>
+            <option value="Tradizionale">Tradizionale</option>
+            <option value="Industriale">Industriale</option>
+            <option value="Biodinamica">Biodinamica</option>
+            <option value="Naturale">Naturale</option>
+            <option value="Biologica">Biologica</option>
+          </select>
+        </div>
 
-                    <label>Regione</label>
-                    <input ref={regione} type="text" name="region" />
+        <div className="form-group">
+          <label>Regione</label>
+          <input ref={regione} type="text" name="region" />
+        </div>
 
-                    <label>Paese</label>
-                    <input ref={paese} type="text" name="country" />
+        <div className="form-group">
+          <label>Paese</label>
+          <input ref={paese} type="text" name="country" />
+        </div>
 
-                    <label>Anno di fondazione</label>
-                    <input ref={annoFondazione} type="number" name="yearFounded" />
+        <div className="form-group">
+          <label>Anno di fondazione</label>
+          <input ref={annoFondazione} type="number" name="yearFounded" />
+        </div>
 
-                    <label>Ettari</label>
-                    <input ref={ettari} type="number" name="hectares" />
+        <div className="form-group">
+          <label>Ettari</label>
+          <input ref={ettari} type="number" name="hectares" />
+        </div>
 
-                    <label>Produzione annua</label>
-                    <input ref={produzioneAnnua} type="number" name="annualProduction" />
+        <div className="form-group">
+          <label>Produzione annua</label>
+          <input ref={produzioneAnnua} type="number" name="annualProduction" />
+        </div>
 
-                    <label>Vitigni (separati da virgola)</label>
-                    <input ref={vitigni} type="text" name="grapes" />
+        <div className="form-group">
+          <label>Vitigni (separati da virgola)</label>
+          <input ref={vitigni} type="text" name="grapes" />
+        </div>
 
-                    <label>Premi (separati da virgola)</label>
-                    <input ref={premi} type="text" name="awards" />
+        <div className="form-group">
+          <label>Premi (separati da virgola)</label>
+          <input ref={premi} type="text" name="awards" />
+        </div>
 
-                    <label>Sito web</label>
-                    <input ref={sitoWeb} type="text" name="website" />
+        <div className="form-group full">
+          <label>Sito web</label>
+          <input ref={sitoWeb} type="text" name="website" />
+        </div>
 
-                    <label>URL immagine</label>
-                    <input ref={immagine} type="text" name="imageUrl" />
+        <div className="form-group full">
+          <label>URL immagine</label>
+          <input ref={immagine} type="text" name="imageUrl" />
+        </div>
 
-                    <label>Note</label>
-                    <textarea ref={note} name="notes" rows="3" />
+        <div className="form-group full">
+          <label>Note</label>
+          <textarea ref={note} name="notes" rows="3" />
+        </div>
 
-                    <label>Abbinamenti (separati da virgola)</label>
-                    <input ref={abbinamenti} type="text" name="pairings" />
+        <div className="form-group full">
+          <label>Abbinamenti (separati da virgola)</label>
+          <input ref={abbinamenti} type="text" name="pairings" />
+        </div>
+      </div>
 
-                    <button type="submit">Aggiungi Cantina</button>
-                </form>
-            </div>
+      <div className="form-actions">
+        <button type="submit" className="btn-primary">
+          Aggiungi Cantina
+        </button>
+      </div>
+    </form>
+  </div>
         </>
     )
 }

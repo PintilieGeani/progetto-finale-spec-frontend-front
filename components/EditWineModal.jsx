@@ -21,7 +21,7 @@ export default function EditWineModal({ show, wine, onClose, onSave }) {
     const pairingsRef = useRef()
     const appellationRef = useRef()
     const bottleSizeRef = useRef()
-    const {updateWine} = useWine()
+    const { updateWine } = useWine()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -58,71 +58,110 @@ export default function EditWineModal({ show, wine, onClose, onSave }) {
 
 
     return (
-        <div>
-            <h2>Modifica Vino</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Titolo</label>
-                <input type="text" defaultValue={wine.title} ref={titleRef} />
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h2 className="modal-title">Modifica Vino</h2>
+                <form onSubmit={handleSubmit} className="modal-form">
 
-                <label>Categoria</label>
-                <select defaultValue={wine.category} ref={categoryRef}>
-                    <option value="Rosso">Rosso</option>
-                    <option value="Bianco">Bianco</option>
-                    <option value="Rosé">Rosé</option>
-                    <option value="Spumante">Spumante</option>
-                    <option value="Dessert">Dessert</option>
-                </select>
+                    <div className="form-grid">
+                        <div className="form-group">
+                            <label>Titolo</label>
+                            <input type="text" defaultValue={wine.title} ref={titleRef} />
+                        </div>
 
-                <label>Cantina</label>
-                <input type="text" defaultValue={wine.winery} ref={wineryRef} />
+                        <div className="form-group">
+                            <label>Categoria</label>
+                            <select defaultValue={wine.category} ref={categoryRef}>
+                                <option value="Rosso">Rosso</option>
+                                <option value="Bianco">Bianco</option>
+                                <option value="Rosé">Rosé</option>
+                                <option value="Spumante">Spumante</option>
+                                <option value="Dessert">Dessert</option>
+                            </select>
+                        </div>
 
-                <label>Regione</label>
-                <input type="text" defaultValue={wine.region} ref={regionRef} />
+                        <div className="form-group">
+                            <label>Cantina</label>
+                            <input type="text" defaultValue={wine.winery} ref={wineryRef} />
+                        </div>
 
-                <label>Paese</label>
-                <input type="text" defaultValue={wine.country} ref={countryRef} />
+                        <div className="form-group">
+                            <label>Regione</label>
+                            <input type="text" defaultValue={wine.region} ref={regionRef} />
+                        </div>
 
-                <label>Uve (separate da virgola)</label>
-                <input type="text" defaultValue={wine.grapes} ref={grapesRef} />
+                        <div className="form-group">
+                            <label>Paese</label>
+                            <input type="text" defaultValue={wine.country} ref={countryRef} />
+                        </div>
 
-                <label>Annata</label>
-                <input type="number" defaultValue={wine.vintage} ref={vintageRef} />
+                        <div className="form-group">
+                            <label>Uve</label>
+                            <input type="text" defaultValue={wine.grapes} ref={grapesRef} />
+                        </div>
 
-                <label>ABV (%)</label>
-                <input type="number" step="0.1" defaultValue={wine.abv} ref={abvRef} />
+                        <div className="form-group">
+                            <label>Annata</label>
+                            <input type="number" defaultValue={wine.vintage} ref={vintageRef} />
+                        </div>
 
-                <label>Dolcezza (1-5)</label>
-                <input type="number" min="1" max="5" defaultValue={wine.sweetness} ref={sweetnessRef} />
+                        <div className="form-group">
+                            <label>ABV (%)</label>
+                            <input type="number" step="0.1" defaultValue={wine.abv} ref={abvRef} />
+                        </div>
 
-                <label>Acidità (1-5)</label>
-                <input type="number" min="1" max="5" defaultValue={wine.acidity} ref={acidityRef} />
+                        <div className="form-group">
+                            <label>Dolcezza (1-5)</label>
+                            <input type="number" min="1" max="5" defaultValue={wine.sweetness} ref={sweetnessRef} />
+                        </div>
 
-                <label>Corpo (1-5)</label>
-                <input type="number" min="1" max="5" defaultValue={wine.body} ref={bodyRef} />
+                        <div className="form-group">
+                            <label>Acidità (1-5)</label>
+                            <input type="number" min="1" max="5" defaultValue={wine.acidity} ref={acidityRef} />
+                        </div>
 
-                <label>Tannini (1-5)</label>
-                <input type="number" min="1" max="5" defaultValue={wine.tannin} ref={tanninRef} />
+                        <div className="form-group">
+                            <label>Corpo (1-5)</label>
+                            <input type="number" min="1" max="5" defaultValue={wine.body} ref={bodyRef} />
+                        </div>
 
-                <label>Prezzo (€)</label>
-                <input type="number" step="0.01" defaultValue={wine.priceEUR} ref={priceRef} />
+                        <div className="form-group">
+                            <label>Tannini (1-5)</label>
+                            <input type="number" min="1" max="5" defaultValue={wine.tannin} ref={tanninRef} />
+                        </div>
 
-                <label>Punteggio</label>
-                <input type="number" step="0.1" defaultValue={wine.score} ref={scoreRef} />
+                        <div className="form-group">
+                            <label>Prezzo (€)</label>
+                            <input type="number" step="0.01" defaultValue={wine.priceEUR} ref={priceRef} />
+                        </div>
 
-                <label>URL immagine</label>
-                <input type="text" defaultValue={wine.imageUrl} ref={imageUrlRef} />
+                        <div className="form-group">
+                            <label>Punteggio</label>
+                            <input type="number" step="0.1" defaultValue={wine.score} ref={scoreRef} />
+                        </div>
 
-                <label>Note</label>
-                <textarea rows="3" defaultValue={wine.notes} ref={notesRef} />
+                        <div className="form-group full">
+                            <label>URL immagine</label>
+                            <input type="text" defaultValue={wine.imageUrl} ref={imageUrlRef} />
+                        </div>
 
-                <label>Abbinamenti (separati da virgola)</label>
-                <input type="text" defaultValue={wine.pairings} ref={pairingsRef} />
+                        <div className="form-group full">
+                            <label>Note</label>
+                            <textarea rows="3" defaultValue={wine.notes} ref={notesRef} />
+                        </div>
 
-                <div>
-                    <button type="submit">Salva</button>
-                    <button type="button" onClick={onClose}>Annulla</button>
-                </div>
-            </form>
+                        <div className="form-group full">
+                            <label>Abbinamenti</label>
+                            <input type="text" defaultValue={wine.pairings} ref={pairingsRef} />
+                        </div>
+                    </div>
+
+                    <div className="modal-actions">
+                        <button type="submit" className="btn-danger">Salva</button>
+                        <button type="button" onClick={onClose} className="btn-danger">Annulla</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

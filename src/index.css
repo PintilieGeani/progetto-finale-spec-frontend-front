@@ -211,6 +211,7 @@ a {
     font-family: "Lato", serif;
     transition: color 0.3s ease;
     z-index: 1;
+    width: 150px;
 }
 
 .wine-table button::before {
@@ -452,6 +453,135 @@ a {
 
 /* Fine Modal Compare */
 
+/* Modale edit */
+/* Contenitore modale */
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+    height: 500px;
+    overflow: scroll;
+    scrollbar-color: #722F37;
+}
+
+/* Titolo */
+.modal-title {
+    font-family: "Playfair Display", serif;
+    color: #722F37;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Griglia input */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+/* Input & textarea */
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #C5A46D;
+    border-radius: 5px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    font-family: "Lato", sans-serif;
+    color: #722F37;
+}
+
+.modal-form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #722F37;
+}
+
+/* Bottoni azioni */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.modal-actions .btn-primary,
+.modal-actions .btn-danger {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+/* Effetto riempimento */
+.modal-actions .btn-primary::before,
+.modal-actions .btn-danger::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    z-index: -1;
+    transition: height 0.4s ease;
+    border-radius: 3px;
+}
+
+
+/* Danger */
+.btn-danger {
+    color: #722F37;
+    border-color: #722F37;
+}
+
+.btn-danger::before {
+    background-color: #722F37;
+}
+
+.btn-danger:hover {
+    color: #C5A46D;
+}
+
+.btn-danger:hover::before {
+    height: 100%;
+}
+
+/* Animazione comparsa */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fine Modale edit */
+
 /* Fine Modali */
 
 
@@ -467,6 +597,7 @@ header {
     position: fixed;
     top: 0;
     z-index: 10;
+    width: 100%;
 }
 
 nav {
@@ -475,6 +606,7 @@ nav {
     justify-content: space-between;
     height: 100px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
 }
 
 .login {
@@ -686,3 +818,111 @@ select::placeholder {
 }
 
 /* Fine Form Generics */
+
+
+
+/* Dettagli */
+.categoria {
+    text-align: center;
+    color: #C5A46D;
+    font-weight: 700;
+    font-family: "Lato, sans-serif";
+    text-shadow:
+        -1px -1px 0 #722F37,
+        1px -1px 0 #722F37,
+        -1px 1px 0 #722F37,
+        1px 1px 0 #722F37;
+    margin-bottom: 20px;
+}
+
+.dettagli-img img {
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.info {
+    text-align: center;
+    margin: 20px 0px;
+    line-height: 30px;
+}
+
+.car-titolo {
+    color: #C5A46D;
+    text-shadow:
+        -1px -1px 0 #722F37,
+        1px -1px 0 #722F37,
+        -1px 1px 0 #722F37,
+        1px 1px 0 #722F37;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.carateristiche {
+    text-align: center;
+    line-height: 25px;
+}
+
+.abinamenti {
+    text-align: center;
+    margin-top: 20px;
+    line-height: 30px;
+}
+
+.dettagli-btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.dettagli-btns button {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-family: "Lato", sans-serif;
+    border-radius: 5px;
+    border: 1px solid #722F37;
+    background-color: transparent;
+    color: #722F37;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+/* Effetto riempimento */
+.dettagli-btns button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #722F37;
+    z-index: -1;
+    transition: height 0.4s ease;
+    border-radius: 3px;
+}
+
+.dettagli-btns button:hover::before {
+    height: 100%;
+}
+
+.dettagli-btns button:hover {
+    color: #C5A46D;
+}
+
+.supercard {
+    background-color: rgba(114, 47, 55, 0.5);
+    width: 60%;
+    margin: 130px auto 30px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+
+}
+
+/* Fine Dettagli */

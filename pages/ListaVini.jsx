@@ -164,7 +164,7 @@ export default function ListaVini() {
                                 </td>
                                 <td>
                                     <button className={wineToCompareId.some((e) => e.id === wine.id) ? "inCompare" : ""} onClick={() => addCompare(wine)}>Confronta</button>
-                                    <button className={favorites.some(fav => fav.id === wine.id) ? "inFavorites" : ""} onClick={() => addFavorites(wine)}>Aggiungi ai preferiti</button>
+                                    <button className={favorites.some(fav => fav.id === wine.id) ? "inFavorites" : ""} onClick={() => addFavorites(wine)}>{favorites.some(fav => fav.id === wine.id) ? "Aggiunto ai preferiti" : "Aggiungi ai preferiti"}</button>
                                 </td>
                                 {isAdmin &&
                                     <td>

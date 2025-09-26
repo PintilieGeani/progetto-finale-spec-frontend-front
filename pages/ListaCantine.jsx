@@ -147,7 +147,7 @@ export default function ListaCantine() {
                             <td>{winery.category}</td>
                             <td>
                                 <button className={wineryToCompareId.some((e) => e.id === winery.id) ? "inCompare" : ""} onClick={() => addCompare(winery)}>Confronta</button>
-                                <button className={wineryFavorites.some(fav => fav.id === winery.id) ? "inFavorites" : ""} onClick={() => addFavorites(winery)}>Aggiungi ai preferiti</button>
+                                <button className={wineryFavorites.some(fav => fav.id === winery.id) ? "inFavorites" : ""} onClick={() => addFavorites(winery)}>{wineryFavorites.some(fav => fav.id === winery.id) ? "Aggiunto ai preferiti" : "Aggiungi ai preferiti"}</button>
                             </td>
                             {isAdmin &&
                                 <td>

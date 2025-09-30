@@ -104,7 +104,7 @@ export default function Comparatore() {
                                 <p>Da abbinare con: {winery.pairings.join(", ")}</p>
                             </div>
                             <div className="compare-card-link">
-                                <a href={winery.website} target="_blank" rel="noreferrer">
+                                <a className="btn-primary" href={winery.website} target="_blank" rel="noreferrer">
                                     Visita il sito
                                 </a>
                             </div>

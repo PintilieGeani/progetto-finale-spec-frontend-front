@@ -22,7 +22,7 @@ export default function Login(){
 
     return (
         <div className="login">
-            <h1>Login Admin</h1>
+            <h1 className="sottotitolo">Login Admin</h1>
             <form action="">
             <label htmlFor="username">Username</label>
             <input type="text"
@@ -37,7 +37,7 @@ export default function Login(){
             placeholder="Inserisci la tua password"
             />
             </form>
-            <button onClick={() => handleLogin(username, password)}>Entra come Admin</button>
+            <button className="btn-primary" onClick={() => handleLogin(username, password)}>Entra come Admin</button>
         </div>
     )
 }

@@ -182,7 +182,7 @@ export default function ListaVini() {
                 <WineCompareModal 
                     data={wines}
                     ids={wineToCompareId}
-                    onGo={() => navigate("/compare")}
+                    onGo={() => {wineToCompareId.length >= 2 ? navigate("/compare") : alert("Scegli almeno due prodotti per il confronto") }}
                     onClose={() => {
                         setWineToCompareId([])
                     }}

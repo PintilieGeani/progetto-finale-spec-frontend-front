@@ -17,9 +17,8 @@ export default function AppHeader(){
             </div>
             <div className="links">
             <NavLink to="/">Lista vini</NavLink>
-            <NavLink to="/compare">Comparatore</NavLink>
-            <NavLink to="/preferiti">Preferiti</NavLink>
             <NavLink to="/cantine">Lista cantine</NavLink>
+            <NavLink to="/preferiti">Preferiti</NavLink>
             {isAdmin ? "" : <button onClick={() => navigate("/login")}>Login</button>}
             {isAdmin && <NavLink to = {"add-wine"}>Aggiungi Vino</NavLink>}
             {isAdmin && <NavLink to = {"add-winery"}>Aggiungi Cantina</NavLink>}

@@ -93,6 +93,7 @@ export const WineProvider = ({ children }) => {
     const logout = () => {
         setIsAdmin(false)
         localStorage.setItem("isAdmin", "false")
+        navigate("/")
     }
 
     // Operazioni Admin Wine CRUD

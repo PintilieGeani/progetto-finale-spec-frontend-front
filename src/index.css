@@ -1,29 +1,3 @@
-/* Debug */
-
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-form input,
-form select,
-form textarea,
-form button {
-    width: 50%;
-}
-
-html {
-    scrollbar-width: none;
-}
-
-
-/* Fine Debug */
-
-
-
-
 /* RESET CSS */
 * {
     margin: 0;
@@ -53,6 +27,7 @@ a {
     margin: 0 auto;
     width: 90%;
     overflow-x: auto;
+    justify-content: center;
 }
 
 .compare-card {
@@ -835,7 +810,7 @@ select::placeholder {
     margin: 10px;
 }
 
-.dettagli-img{
+.dettagli-img {
     margin: 20px;
 }
 
@@ -933,109 +908,110 @@ select::placeholder {
 
 /* Pagina ADD */
 .page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin-top: 100px;
 }
 
 .page-title {
-  font-family: "Playfair Display", serif;
-  color: #722F37;
-  margin-bottom: 30px;
+    font-family: "Playfair Display", serif;
+    color: #722F37;
+    margin-bottom: 30px;
 }
 
 .form-container {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  max-width: 900px;
-  width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
 }
 
 .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group.full {
-  grid-column: span 2;
+    grid-column: span 2;
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #722F37;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #722F37;
 }
 
 input,
 select,
 textarea {
-  padding: 10px;
-  border: 1px solid #C5A46D;
-  border-radius: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: #722F37;
-  font-family: "Lato", sans-serif;
+    padding: 10px;
+    border: 1px solid #C5A46D;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #722F37;
+    font-family: "Lato", sans-serif;
 }
 
 textarea {
-  resize: none;
+    resize: none;
 }
 
 .form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .btn-primary {
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  color: #722F37;
-  border: 2px solid #722F37;
-  padding: 10px 20px;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: #722F37;
+    border: 2px solid #722F37;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1;
 }
 
 .btn-primary::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 0;
-  background-color: #722F37;
-  z-index: -1;
-  transition: height 0.5s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #722F37;
+    z-index: -1;
+    transition: height 0.5s ease;
 }
 
 .btn-primary:hover::before {
-  height: 100%;
+    height: 100%;
 }
 
 .btn-primary:hover {
-  color: #C5A46D;
+    color: #C5A46D;
 }
+
 /* Fine Pagina ADD */
 
 
 
 /* FOOTER */
-footer{
+footer {
     height: 100px;
     background-color: #722F37;
     text-align: center;
@@ -1044,4 +1020,54 @@ footer{
     font-family: "Playfair Display", serif;
     margin-top: 30px;
 }
+
 /* FINE FOOTER */
+
+
+/* Login */
+
+.login {
+    width: 80%;
+    margin: 130px auto 30px;
+    background-image: url(/public/img/login.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 40px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.login input {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.login h1 {
+    color: #C5A46D;
+}
+
+.login label {
+    color: #C5A46D;
+    margin-bottom: 10px;
+}
+
+.login button {
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Fine Login */

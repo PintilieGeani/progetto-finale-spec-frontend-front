@@ -165,7 +165,7 @@ export default function ListaCantine() {
                             <WineryCompareModal 
                                 data={winerys}
                                 ids={wineryToCompareId}
-                                onGo={() => navigate("/compare")}
+                                onGo={() => {wineryToCompareId.length >= 2 ? navigate("/compare") : alert("Scegli almeno due prodotti per il confronto") }}
                                 onClose={() => {
                                     setWineryToCompareId([])
                                 }}
